@@ -24,7 +24,8 @@ class Request {
 
 	public function __construct($method, $path, $callback) {
 		$this->method = strtolower($method);
-		$this->path = $path;
+		//к пути добавляем корень приложения, например путь '/test', а корень '/root/app', будет /root/app/test
+		$this->path = APP_ROOT.$path;
 
 		//получаем имя контроллера и имя метода, запрос к методу строится: контроллер:метод
 		$partsCallback = explode(':', $callback);

@@ -1,15 +1,14 @@
 <?php
 
-define('APP_ROOT', '/library/public');
-
-require_once  __DIR__.'/../application/config/autoload.php';
+require_once __DIR__.'/../application/Application.php';
 
 Application::init();
 
-Request('GET', APP_ROOT            ,'Ctrl_index');
-Request('GET', APP_ROOT.'/q'       ,'Ctrl_index');
-Request('GET', APP_ROOT.'/errors'  ,'Ctrl_index:err');
-Request('GET', APP_ROOT.'/test'    ,'Ctrl_index:getNew');
+
+Request('GET', '/','Ctrl_index');
+Request('GET', '/q','Ctrl_index');
+Request('GET', '/errors','Ctrl_index:err');
+Request('GET', '/test','Ctrl_index:getNew');
 
 //Request('GET', '/shoppingNew/public/qwerty/{name}', 'Ctrl_test');
 
