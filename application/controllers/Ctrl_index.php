@@ -2,7 +2,7 @@
 
 /*require __DIR__.'/../models/IndexModel.php';*/
 
-class Ctrl_index extends BaseController {
+class Ctrl_index extends Ctrl_base {
 
 	private $template; // сгенерированный шаблон
 

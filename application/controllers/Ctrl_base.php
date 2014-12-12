@@ -1,6 +1,6 @@
 <?php
 
-abstract class BaseController {
+abstract class Ctrl_base {
 
 	/*
 	* Метод генерации шаблона, 

@@ -1,6 +1,6 @@
 <?php
 
-class DatabaseConnect{
+class Model_databaseConnect{
 
 	private static $instance;
 

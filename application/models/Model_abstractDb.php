@@ -1,12 +1,12 @@
 <?php
-require 'DatabaseConnect.php';
+require 'Model_databaseConnect.php';
 
-abstract class AbstractDb{
+abstract class Model_abstractDb{
 
 	private $db;
 
 	function __construct() {
-		$this->db = DatabaseConnect::connect();
+		$this->db = Model_databaseConnect::connect();
 	}
 
 	function select($query){

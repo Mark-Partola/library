@@ -1,17 +1,8 @@
 <?php
 
-require_once  __DIR__.'/../application/Application.php';
-require_once  __DIR__.'/../application/Request.php';
-
 define('APP_ROOT', '/library/public');
 
-function __autoload($classname) {
-	//Ctrl или Base
-	if($classname[0] == 'C' || $classname[0] == 'B'){
-		require_once '../application/controllers/' . $classname .'.php';
-	} else
-		require_once '../application/models/' . $classname .'.php';
-}
+require_once  __DIR__.'/../application/config/autoload.php';
 
 Application::init();
 
