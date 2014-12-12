@@ -64,7 +64,8 @@ class Request {
 
 		//проверяем метод запроса
 		if($this->method != '' && strtolower($_SERVER['REQUEST_METHOD']) != $this->method) {
-			header('Location:'.ROUTE_ROOT.'/errors?status=404');
+			//header('Location:'.ROUTE_ROOT.'/errors?status=404');
+			return false;
 		}
 
 		//переменные запроса для передачи в кэллбек

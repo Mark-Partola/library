@@ -40,4 +40,16 @@ class Application {
 		return Application::getInstance()->i_run();
 	}
 
+	public static function triggerError($status = 1000){
+		$_GET['status'] = $status;
+		include($_SERVER['DOCUMENT_ROOT'].ROUTE_ROOT.'/tpl/errors/error.php');
+		exit;
+	}
+
 }
+/*
+class Logger{
+	public static function All($message){
+		file_put_contents(filename, data)
+	}
+}*/
