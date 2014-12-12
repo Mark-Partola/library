@@ -41,7 +41,7 @@
 		<div class="body-wrapper">
 			<ul id="items">
 			    <li>
-			    	<p class="image"><a href="http://templatica.com"><img src="images/01.jpg" alt="Template preview" /></a></p>
+			    	<p class="image"><a href="http://templatica.com"><img src="<?=TEMPLATE_PATH?>/images/01.jpg" alt="Template preview" /></a></p>
 			    	<h3>Template 01</h3>
 			    	<p class="info">Pretty cool template</p>
 			    </li>

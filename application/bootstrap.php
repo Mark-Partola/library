@@ -19,3 +19,7 @@ if(!file_exists(ROUTE_ROOT.'/.htaccess')){
 	$htaccess = file_get_contents(__DIR__.'/config/htaccess.txt');
 	file_put_contents('.htaccess',str_replace('{{path}}', ROUTE_ROOT, $htaccess));
 }
+
+function print_arr($arr){
+	echo '<pre>'.print_r($arr, true).'</pre>';
+}
