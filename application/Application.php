@@ -42,14 +42,14 @@ class Application {
 
 	public static function triggerError($status = 1000){
 		$_GET['status'] = $status;
-		include($_SERVER['DOCUMENT_ROOT'].ROUTE_ROOT.'/tpl/errors/error.php');
+		include(DOCUMENT_ROOT.'/public/tpl/errors/error.php');
 		exit;
 	}
 
 }
-/*
+
 class Logger{
 	public static function All($message){
-		file_put_contents(filename, data)
+		file_put_contents(DOCUMENT_ROOT.'/application/logs/all.log', $message);
 	}
-}*/
+}
