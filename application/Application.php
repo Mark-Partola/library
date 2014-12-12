@@ -49,7 +49,20 @@ class Application {
 }
 
 class Logger{
-	public static function All($message){
-		file_put_contents(DOCUMENT_ROOT.'/application/logs/all.log', $message);
+	public static function all($message, $file=null, $line=null){
+
+		$arr = array();
+
+		$arr[] = date("F-j-Y g:i:s a",time()) . "\t|\t";
+		$arr[] = $message . "\t|\t";
+		$arr[] = 'File = '.$file . "\t\t\t|\t";
+		$arr[] = 'Line = '.$line . "\t\n";
+
+		file_put_contents(DOCUMENT_ROOT.'/application/logs/all.log', $arr, FILE_APPEND);
+
 	}
 }
+/*
+class RequestLogger extends Logger{
+	public static function log($message)
+}*/
