@@ -1,3 +1,3 @@
 <?php
 
-define('APP_ROOT', '/library/public');
+define('ROUTE_ROOT', '/library/public');

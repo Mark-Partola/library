@@ -25,7 +25,7 @@ class Request {
 	public function __construct($method, $path, $callback) {
 		$this->method = strtolower($method);
 		//к пути добавляем корень приложения, например путь '/test', а корень '/root/app', будет /root/app/test
-		$this->path = APP_ROOT.$path;
+		$this->path = ROUTE_ROOT.$path;
 
 		//получаем имя контроллера и имя метода, запрос к методу строится: контроллер:метод
 		$partsCallback = explode(':', $callback);
@@ -64,7 +64,7 @@ class Request {
 
 		//проверяем метод запроса
 		if($this->method != '' && strtolower($_SERVER['REQUEST_METHOD']) != $this->method) {
-			return false;
+			header('Location:'.ROUTE_ROOT.'/errors?status=404');
 		}
 
 		//переменные запроса для передачи в кэллбек
@@ -88,8 +88,8 @@ class Request {
 
 		//если кол-во частей в массивах разное - выходим
 		if(count($uri) != count($path)) {
-			//echo "Not Found";
 			return false;
+			//header('Location:'.APP_ROOT.'/errors?status=404');
 		}
 
 		//проходим по всем частям запроса
@@ -103,22 +103,21 @@ class Request {
 					//добавим эту переменную в массив
 					$args[$match[1]] = $uri[$i];
 				} else {
-					//если значение не соответствует проверке по регулярке, выходим
-					echo "Not Found";
 					return false;
+					//header('Location:'.APP_ROOT.'/errors?status=404');
 				}
 			} else {
 				//если часть не переменная, просто сравниваем часть URI с запросом
 				if($uri[$i] != $path[$i]){
-					//echo "Not Found";
 					return false;
+					//header('Location:'.APP_ROOT.'/errors?status=404');
 				}
 			}
 		}
 
 		//вызываем кэллбек, передавая массив с переменными запроса
 		if (!method_exists($this->controller, $this->action)) {
-			echo "Not Found";
+			//header('Location:'.APP_ROOT.'/errors?status=404');
 			return false;
 		} else {
 			$action = $this->action;

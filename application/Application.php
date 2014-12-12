@@ -33,7 +33,7 @@ class Application {
 		}
 
 		header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"); 
-		header('Location: /library/public/errors?status=404');
+		header('Location:'.ROUTE_ROOT.'/errors?status=404');
 	}
 
 	public static function run() {

@@ -27,7 +27,7 @@ if ($title == false || strlen($status) != 3) {
 echo '<h1>Внимание! Обнаружена ошибка '.$title.'!</h1>
 <p>'.$message.'</p>';
 
-echo '<a href='.APP_ROOT.'>Вернуться на главную</a>';
+echo '<a href='.ROUTE_ROOT.'>Вернуться на главную</a>';
 ?>
 
 </body>

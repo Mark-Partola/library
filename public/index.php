@@ -1,4 +1,5 @@
 <?php
+$start = microtime(true);
 
 require_once __DIR__.'/../application/Application.php';
 
@@ -20,5 +21,6 @@ Request('GET', '/test','Ctrl_index:getNew');
 
 Application::run();
 
+echo microtime(true) - $start;
 
 ?>
