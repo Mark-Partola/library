@@ -40,7 +40,7 @@ class Ctrl_index extends BaseController {
 
 	public function err() {
 
-		$this->template = $this->generateTemplate('errors/404');
+		$this->template = $this->generateTemplate('errors/error');
 
 		echo $this->template;
 	}

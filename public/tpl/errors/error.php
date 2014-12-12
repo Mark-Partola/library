@@ -27,7 +27,7 @@ if ($title == false || strlen($status) != 3) {
 echo '<h1>Внимание! Обнаружена ошибка '.$title.'!</h1>
 <p>'.$message.'</p>';
 
-//echo '<a>'. $_SERVER['HTTP_REFERER'].'</a>';
+echo '<a href='.APP_ROOT.'>Вернуться на главную</a>';
 ?>
 
 </body>
