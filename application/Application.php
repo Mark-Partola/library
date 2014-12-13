@@ -71,6 +71,9 @@ class Logger{
 		return self::$instance;
 	}
 */
+
+	protected static $active = ACTIVE_LOGGER;
+
 	public function all($message, $file=null, $line=null){
 
 		$arr = array();
@@ -88,6 +91,9 @@ class Logger{
 
 class RequestLogger extends Logger{
 	public static function log($message, $method, $path){
+
+		if(!self::$active) return false;
+
 		$arr = parent::all($message);
 		$arr[] = $method."\t|\t";
 		$arr[] = $path."\t|\t";
@@ -130,6 +136,9 @@ class RequestLogger extends Logger{
 		//$arr[3] = $_SESSION['path']."\t|\t";
 	}
 	public static function appendStatus($status){
+
+		if(!self::$active) return false;
+
 		$status = $status."\n";
 		file_put_contents(DOCUMENT_ROOT.'/application/logs/request.log', $status, FILE_APPEND);
 	}
