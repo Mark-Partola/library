@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+$_SESSION['path'] = '';
 require_once __DIR__.'/config/config.php';
 require_once __DIR__.'/config/autoload.php';
 

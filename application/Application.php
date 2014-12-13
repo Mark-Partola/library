@@ -3,6 +3,7 @@
 class Application {
 
 	public $requests = array();
+	public static $registered_path = array();
 
 	protected static $instance;
 
@@ -26,13 +27,18 @@ class Application {
 
 	//метод обработки всех запросов за один раз
 	private function i_run() {
+		$i = 1;
 		foreach($this->requests as &$request) {
+			self::$registered_path[] = $request->path;
 			$done = $request->run();
 			if($done) {
-				RequestLogger::log('Request', $request->method, $request->path);
+				RequestLogger::log('Request',$_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
 				return true;
-			}
+			} else {
+				$path = $_SERVER['REQUEST_URI'];
+			 }
 		}
+		RequestLogger::log('Request',($_SERVER['REQUEST_METHOD']), $path);
 
 		header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"); 
 		header('Location:'.ROUTE_ROOT.'/errors?status=404');
@@ -85,10 +91,46 @@ class RequestLogger extends Logger{
 		$arr = parent::all($message);
 		$arr[] = $method."\t|\t";
 		$arr[] = $path."\t|\t";
-		$arr[] = $_SERVER['REMOTE_ADDR']."\n";
+		$arr[] = $_SERVER['REMOTE_ADDR']."\t|\t";
 
+
+		//file_put_contents(DOCUMENT_ROOT.'/application/logs/request.log', $path."\n", FILE_APPEND);
 		//print_arr($arr);
 
-		file_put_contents(DOCUMENT_ROOT.'/application/logs/request.log', $arr, FILE_APPEND);
+		if(in_array($path, Application::$registered_path)){
+			//echo $path;
+			//print_arr(Application::$registered_path);
+			$_SESSION['status'] = 200;
+			$_SESSION['path'] = $path;
+
+			file_put_contents(DOCUMENT_ROOT.'/application/logs/request.log', $arr, FILE_APPEND);
+			RequestLogger::appendStatus($_SESSION['status']);
+		} else {
+			//file_put_contents(DOCUMENT_ROOT.'/application/logs/request.log', $path."\n", FILE_APPEND);
+				//$_SESSION['path'] = $path;
+			//$_SESSION['status'] = 200;
+			
+			if(!(stripos($path, 'errors') !== false)){
+				$_SESSION['path'] = $path;
+				$arr[3] = $_SESSION['path']."\t|\t";
+				file_put_contents(DOCUMENT_ROOT.'/application/logs/request.log', $arr, FILE_APPEND);
+				$_SESSION['doneInfoLog'] = true;
+			} else {
+				preg_match('/\d{3,4}/',$path, $status);
+				$_SESSION['status'] = $status[0];
+				
+				if($_SESSION['doneInfoLog']){
+					RequestLogger::appendStatus($_SESSION['status']);
+					$_SESSION['doneInfoLog'] = false;
+				}
+			}
+
+		}
+
+		//$arr[3] = $_SESSION['path']."\t|\t";
+	}
+	public static function appendStatus($status){
+		$status = $status."\n";
+		file_put_contents(DOCUMENT_ROOT.'/application/logs/request.log', $status, FILE_APPEND);
 	}
 }

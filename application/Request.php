@@ -76,7 +76,7 @@ class Request {
 		$path = explode('/', $this->path);
 
 		//если запрос пришел с GET параметрами, то выбрасываем их, путь должен быть чистым, они автоматически попадут в $_GET
-		if(strpos(end($uri), '?')){
+		if(strpos(end($uri), '?') !== false){
 			$query = explode('?', end($uri));
 			$lastElemUri = array_pop($uri);
 			$lastElemUri = $query[0];

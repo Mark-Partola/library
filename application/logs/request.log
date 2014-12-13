@@ -1,4 +1,7 @@
-December-13-2014 1:30:56 am	|	Request		|	get	|	/library/public/q	|	127.0.0.1
-December-13-2014 1:31:03 am	|	Request		|	get	|	/library/public/test	|	127.0.0.1
-December-13-2014 1:31:07 am	|	Request		|	get	|	/library/public/	|	127.0.0.1
-December-13-2014 1:31:10 am	|	Request		|	get	|	/library/public/errors	|	127.0.0.1
+December-13-2014 5:03:08 am	|	Request		|	GET	|	/library/public/	|	127.0.0.1	|	200
+December-13-2014 5:03:13 am	|	Request		|	GET	|	/library/public/ad	|	127.0.0.1	|	404
+December-13-2014 5:03:29 am	|	Request		|	GET	|	/library/public/	|	127.0.0.1	|	200
+December-13-2014 5:03:32 am	|	Request		|	GET	|	/library/public/test	|	127.0.0.1	|	200
+December-13-2014 5:03:34 am	|	Request		|	POST	|	/library/public/test	|	127.0.0.1	|	200
+December-13-2014 5:04:06 am	|	Request		|	GET	|	/library/public/	|	127.0.0.1	|	200
+December-13-2014 5:05:21 am	|	Request		|	GET	|	/library/public/	|	127.0.0.1	|	200
