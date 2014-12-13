@@ -11,7 +11,17 @@ class Model_databaseConnect{
 	public static function connect() {
 
 		if(!is_object(self::$instance)) {
-			self::$instance = new PDO("mysql:host=localhost;dbname=newshopping", 'root', '123');
+
+			$dsn = DRIVER.':host='.HOST.';dbname='.DBNAME;
+
+			try {
+				self::$instance = new PDO($dsn, USER, PASS);
+				self::$instance->exec("SET NAMES utf8");
+				//Logger::all('тестовый лог3', __FILE__, __LINE__);
+			} catch (PDOException $e) {
+				Application::triggerError();
+			}
+
 		}
 
 		return self::$instance;

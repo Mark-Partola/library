@@ -5,19 +5,16 @@ abstract class Model_abstractDb{
 
 	private $db;
 
-	function __construct() {
+	public function __construct() {
 		$this->db = Model_databaseConnect::connect();
 	}
 
-	function select($query){
-		$res = $this->db->query($query); //инъекция
+	public function select(/*$query*/){
+		$res = $this->db->query("SELECT * FROM `lib_books`");
+		$rows = $res->fetchAll(PDO::FETCH_ASSOC);
+		/*print_arr($rows);*/
 
-		$result = array();
-
-		while($row = $res->fetch(PDO::FETCH_ASSOC))
-			$result[] = $row;
-
-		return $result;
+		return $rows;
 	}
 
 }

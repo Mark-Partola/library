@@ -5,17 +5,19 @@
 class Ctrl_index extends Ctrl_base {
 
 	private $template; // сгенерированный шаблон
+	private $model;
 
-	public function __construct() {/*
-		$this->model = new IndexModel();*/
+	public function __construct() {
+		
 	}
 
-	public function index(){/*
-		$test = $this->model->select("SELECT * FROM `users` WHERE `id` = 1");
+	public function index(){
 
-		//когда одна строка, все равно приходит двумерный массив, поэтому обращаемся так.
-		$title = $test[0]['name'];
-*/
+		$this->model = new Model_index();
+
+
+		$books = $this->model->select();
+
 		//генерация, сначала загружаем хедер и футер, потом их передаем в индекс
 		$title = "тест";
 		$header = $this->generateTemplate('header', array('title' => $title));
