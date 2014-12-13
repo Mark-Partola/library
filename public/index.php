@@ -22,6 +22,10 @@ Request('GET', '/test','Ctrl_index:getNew');
 Logger::all('тестовый лог2', __FILE__, __LINE__);
 Application::run();
 
-echo microtime(true) - $start;
+
+echo '<br>';
+echo '<br>';
+echo '<br>';
+echo 'Время работы: '. (microtime(true) - $start);
 
 ?>
