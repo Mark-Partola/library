@@ -123,7 +123,12 @@ class Request {
 		} else {
 			$action = $this->action;
 			$controller = $this->controller;
+
+			//$reflectionMethod = new ReflectionMethod($controller, $action);
+			//$result = $reflectionMethod->invokeArgs(new $controller(), array($args));
+
 			$result = $controller->$action($args);
+			//call_user_func_array($controller->$action, $args);
 		}
 
 		//$result =  call_user_func_array($this->callback, $args);

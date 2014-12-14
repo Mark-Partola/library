@@ -58,20 +58,6 @@ class Application {
 
 class Logger{
 
-	/*private static $instance = null;
-
-	private function __construct(){}
-	private function __clone(){}
-	private function __wakeup(){}
-/*
-	public static function init(){
-		if(!self::$instance){
-			self::$instance = new self;
-		}
-		return self::$instance;
-	}
-*/
-
 	protected static $active = ACTIVE_LOGGER;
 
 	public function all($message, $file=null, $line=null){
@@ -84,7 +70,6 @@ class Logger{
 		//$arr[] = 'Line = '.$line . "\t\n";
 
 		return $arr;
-		//file_put_contents(DOCUMENT_ROOT.'/application/logs/all.log', $arr, FILE_APPEND);
 
 	}
 }

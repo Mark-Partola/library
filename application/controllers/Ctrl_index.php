@@ -7,10 +7,6 @@ class Ctrl_index extends Ctrl_base {
 	private $template; // сгенерированный шаблон
 	private $model;
 
-	public function __construct() {
-		
-	}
-
 	public function index(){
 
 		$this->model = new Model_index();
@@ -30,22 +26,25 @@ class Ctrl_index extends Ctrl_base {
 		echo $this->template;
 	}
 
-	public function post(){
-		//добавить что-то типа фильтра с какой страницы пришел
-		var_dump($_POST);
-	}
+	public function err() {
 
-	public function getNew() {
-		$header = $this->generateTemplate('header', array('title' => 'Тест'));
-		$footer = $this->generateTemplate('footer');
-		$this->template = $this->generateTemplate('test', array('header' => $header, 'footer' => $footer));
+		$this->template = $this->generateTemplate('errors/error');
 
 		echo $this->template;
 	}
 
-	public function err() {
+	public function getBook($args) {
+		extract($args);
 
-		$this->template = $this->generateTemplate('errors/error');
+		$this->model = new Model_index();
+
+		$book = $this->model->getBook($id);
+
+		$title = "тест";
+		$header = $this->generateTemplate('header', array('title' => $title));
+		$footer = $this->generateTemplate('footer');
+
+		$this->template = $this->generateTemplate('book', array('header' => $header, 'footer' => $footer, 'book' => $book));
 
 		echo $this->template;
 	}
