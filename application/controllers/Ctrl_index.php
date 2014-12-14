@@ -33,11 +33,10 @@ class Ctrl_index extends Ctrl_base {
 		echo $this->template;
 	}
 
-	public function getBook($args) {
-		extract($args);
+	public function getBook($id) {
+		//extract($args);
 
 		$this->model = new Model_index();
-
 		$book = $this->model->getBook($id);
 
 		$title = "тест";

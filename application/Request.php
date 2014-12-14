@@ -124,10 +124,10 @@ class Request {
 			$action = $this->action;
 			$controller = $this->controller;
 
-			//$reflectionMethod = new ReflectionMethod($controller, $action);
-			//$result = $reflectionMethod->invokeArgs(new $controller(), array($args));
+			$reflectionMethod = new ReflectionMethod($controller, $action);
+			$result = $reflectionMethod->invokeArgs(new $controller(), $args);
 
-			$result = $controller->$action($args);
+			//$result = $controller->$action($args);
 			//call_user_func_array($controller->$action, $args);
 		}
 
