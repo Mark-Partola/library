@@ -20,7 +20,7 @@ class Model_user extends Model_abstractDb {
 
 		if($result['id']) {
 			$_SESSION['auth'] = $result['id'];
-			header('Location: '.ROUTE_ROOT."/user/{$result['id']}");
+			header('Location: '.ROUTE_ROOT."/profile/");
 		} else {
 			$_SESSION['auth'] = false;
 			header('Location: '.ROUTE_ROOT.'/login');
@@ -28,13 +28,26 @@ class Model_user extends Model_abstractDb {
 
 	}
 
-	public function logout(){
+	public function logout() {
 		$_SESSION['auth'] = false;
 
-		if(!isAjax()){
+		if(!isAjax()) {
 			header('Location: '.$_SERVER['HTTP_REFERER']);
 			exit();
 		}
+	}
+
+	public function getUserProfile($id){
+
+		$sql = "SELECT * 
+					FROM `lib_users`
+						WHERE `id` = ?";
+
+		$stmt = $this->db->prepare($sql);
+		$stmt->execute(array($id));
+
+		return $stmt->fetch();
+
 	}
 
 }

@@ -10,9 +10,9 @@ Request('GET', '/','Ctrl_index');
 
 Request('GET', '/login','Ctrl_user:login');
 Request('GET', '/logout','Ctrl_user:logout');
-Request('POST', '/login','Ctrl_user:checkAuth');
+Request('POST', '/login','Ctrl_user:authorize');
 
-Request('GET', '/user/{id}','Ctrl_user:account');
+Request('GET', '/profile/','Ctrl_user:profile');
 
 //Request('GET', '/login','Ctrl_user:login');
 //Logger::all('тестовый лог', __FILE__, __LINE__);

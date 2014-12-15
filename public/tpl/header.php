@@ -19,4 +19,5 @@
 <body>
 
 	<a href="<?=ROUTE_ROOT.'/logout'?>">Выход</a>
+	<a href="<?=ROUTE_ROOT.'/login'?>">Вход</a>
 	<button id="exit">выйти</button>

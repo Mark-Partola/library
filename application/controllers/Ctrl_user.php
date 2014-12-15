@@ -17,7 +17,7 @@ class Ctrl_user extends Ctrl_base {
 
 	}
 
-	public function checkAuth() {
+	public function authorize() {
 
 		$this->model = new Model_user();
 
@@ -28,8 +28,17 @@ class Ctrl_user extends Ctrl_base {
 
 	}
 
-	public function account($id) {
-		echo $id;
+	public function profile() {
+
+		$this->model = new Model_user();
+
+		if(!$_SESSION['auth']) {
+			header('Location: '.ROUTE_ROOT.'/login');
+		} else {
+			$user = $this->model->getUserProfile($_SESSION['auth']);
+			print_arr($user);
+		}
+
 	}
 
 }
