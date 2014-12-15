@@ -10,6 +10,13 @@ class Ctrl_user extends Ctrl_base {
 
 	}
 
+	public function logout() {
+
+		$this->model = new Model_user();
+		$this->model->logout();
+
+	}
+
 	public function checkAuth() {
 
 		$this->model = new Model_user();
@@ -17,7 +24,7 @@ class Ctrl_user extends Ctrl_base {
 		$login = clear_str($_POST['login']);
 		$password = md5(clear_str($_POST['password']));
 
-		$this->model->auth($login, $password);
+		$this->model->login($login, $password);
 
 	}
 

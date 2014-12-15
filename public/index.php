@@ -9,6 +9,7 @@ Application::init();
 Request('GET', '/','Ctrl_index');
 
 Request('GET', '/login','Ctrl_user:login');
+Request('GET', '/logout','Ctrl_user:logout');
 Request('POST', '/login','Ctrl_user:checkAuth');
 
 Request('GET', '/user/{id}','Ctrl_user:account');

@@ -4,7 +4,7 @@
 
 class Model_user extends Model_abstractDb {
 
-	public function auth($login, $pass) {
+	public function login($login, $pass) {
 
 		$sql = "SELECT `id`
 					FROM `lib_users`
@@ -18,7 +18,7 @@ class Model_user extends Model_abstractDb {
 
 		$result = $stmt->fetch();
 
-		if($result) {
+		if($result['id']) {
 			$_SESSION['auth'] = $result['id'];
 			header('Location: '.ROUTE_ROOT."/user/{$result['id']}");
 		} else {
@@ -26,6 +26,15 @@ class Model_user extends Model_abstractDb {
 			header('Location: '.ROUTE_ROOT.'/login');
 		}
 
+	}
+
+	public function logout(){
+		$_SESSION['auth'] = false;
+
+		if(!isAjax()){
+			header('Location: '.$_SERVER['HTTP_REFERER']);
+			exit();
+		}
 	}
 
 }

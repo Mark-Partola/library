@@ -30,7 +30,7 @@ abstract class Ctrl_base {
 		$header = $this->generateTemplate('header', array('title' => $title));
 		$footer = $this->generateTemplate('footer');
 
-		if($params) {
+		if(is_array($params)) {
 			$this->template = $this->generateTemplate($page, array('header' => $header, 'footer' => $footer, key($params) => $params[key($params)]));
 		} else {
 			$this->template = $this->generateTemplate($page, array('header' => $header, 'footer' => $footer));

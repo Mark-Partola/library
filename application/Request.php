@@ -8,6 +8,10 @@ function clear_str($str) {
 	return strip_tags(trim($str));
 }
 
+function isAjax() {
+	return !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
+}
+
 /*
  *Обертка для класса, чтобы все роуты писать в одну строку
  */
