@@ -45,6 +45,7 @@ class Application {
 	}
 
 	public static function run() {
+		Request('GET', '/errors','Ctrl_index:err');
 		return Application::getInstance()->i_run();
 	}
 

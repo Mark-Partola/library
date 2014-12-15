@@ -2,6 +2,8 @@
 
 abstract class Ctrl_base {
 
+	protected $template;
+
 	/*
 	* Метод генерации шаблона, 
 	* подключается шаблон и передаются переменные,
@@ -21,5 +23,14 @@ abstract class Ctrl_base {
 			include 'tpl/'.$tplname.'.php';
 		return ob_get_clean();
 
+	}
+
+	protected function getTemplate($title=SITE_NAME, $params=null, $header='header', $footer='footer'){
+
+		$header = $this->generateTemplate('header', array('title' => $title));
+		$footer = $this->generateTemplate('footer');
+		$this->template = $this->generateTemplate('index', array('header' => $header, 'footer' => $footer, key($params) => $params[key($params)]));
+
+		return $this->template;
 	}
 }

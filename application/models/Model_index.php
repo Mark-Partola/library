@@ -6,7 +6,12 @@ class Model_index extends Model_abstractDb {
 
 	private function books($field = null){
 
-		$sql = "SELECT `b`.`title` , `b`.`author` , `b`.`pub_year` , `g`.`genre`, `b`.`image_preview`
+		$sql = "SELECT 	`b`.`id`,
+						`b`.`title`,
+						`b`.`author`,
+						`b`.`pub_year`,
+						`g`.`genre`,
+						`b`.`image_preview`
 			FROM `lib_books` AS `b`
 				LEFT JOIN `lib_genres` AS `g` 
 					ON `b`.`genre_id` = `g`.`id`";

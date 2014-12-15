@@ -17,7 +17,7 @@ abstract class Model_abstractDb{
 		return $rows;
 	}
 
-	public function one($name, $mark, $value) {
+	public function filter($name, $mark, $value) {
 		$stmt = $this->db->prepare("SELECT * FROM `lib_books` WHERE `$name` $mark ?");
 		$stmt->execute(array($value));
 		$rows = $stmt->fetch(PDO::FETCH_ASSOC);

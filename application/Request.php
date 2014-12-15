@@ -124,8 +124,11 @@ class Request {
 			$action = $this->action;
 			$controller = $this->controller;
 
-			$reflectionMethod = new ReflectionMethod($controller, $action);
-			$result = $reflectionMethod->invokeArgs(new $controller(), $args);
+			//вызов метода контроллера с параметрами из ключей массива
+			//$reflectionMethod = new ReflectionMethod($controller, $action);
+			//$result = $reflectionMethod->invokeArgs(new $controller(), $args);
+
+			$result = call_user_func_array(array(new $controller, $action), $args);
 
 			//$result = $controller->$action($args);
 			//call_user_func_array($controller->$action, $args);

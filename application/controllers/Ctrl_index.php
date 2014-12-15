@@ -4,26 +4,16 @@
 
 class Ctrl_index extends Ctrl_base {
 
-	private $template; // сгенерированный шаблон
+	//private $template; // сгенерированный шаблон
 	private $model;
 
 	public function index(){
 
 		$this->model = new Model_index();
 
-
 		$books = $this->model->getBooks();
 
-		//print_arr($books);
-
-		//генерация, сначала загружаем хедер и футер, потом их передаем в индекс
-		$title = "тест";
-		$header = $this->generateTemplate('header', array('title' => $title));
-		$footer = $this->generateTemplate('footer');
-
-		$this->template = $this->generateTemplate('index', array('header' => $header, 'footer' => $footer, 'books' => $books));
-
-		echo $this->template;
+		echo $this->getTemplate('Главная', array('books' => $books));
 	}
 
 	public function err() {

@@ -10,6 +10,8 @@
 	</div>
 	<a href="#"><?=$book['genre']?></a>
 
+	<a href="<?=ROUTE_ROOT?>">Вернуться в каталог</a>
+
 </div>
 
 <?=$footer?>

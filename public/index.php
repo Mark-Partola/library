@@ -7,12 +7,12 @@ Application::init();
 
 
 Request('GET', '/','Ctrl_index');
+
+//Request('GET', '/login','Ctrl_user:login');
 //Logger::all('тестовый лог', __FILE__, __LINE__);
 
 Request('GET', '/book/{id}','Ctrl_index:getBook')
 ->assert('id', '|^[0-9]+$|');
-
-Request('GET', '/errors','Ctrl_index:err');
 
 Request('GET', '/test','Ctrl_index:getNew');
 
