@@ -13,7 +13,7 @@ class Ctrl_index extends Ctrl_base {
 
 		$books = $this->model->getBooks();
 
-		echo $this->getTemplate('Главная', array('books' => $books));
+		echo $this->getTemplate('index', array('books' => $books));
 	}
 
 	public function err() {

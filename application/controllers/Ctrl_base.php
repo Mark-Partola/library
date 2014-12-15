@@ -25,11 +25,16 @@ abstract class Ctrl_base {
 
 	}
 
-	protected function getTemplate($title=SITE_NAME, $params=null, $header='header', $footer='footer'){
+	protected function getTemplate($page='index', $params=null, $title=SITE_NAME, $header='header', $footer='footer'){
 
 		$header = $this->generateTemplate('header', array('title' => $title));
 		$footer = $this->generateTemplate('footer');
-		$this->template = $this->generateTemplate('index', array('header' => $header, 'footer' => $footer, key($params) => $params[key($params)]));
+
+		if($params) {
+			$this->template = $this->generateTemplate($page, array('header' => $header, 'footer' => $footer, key($params) => $params[key($params)]));
+		} else {
+			$this->template = $this->generateTemplate($page, array('header' => $header, 'footer' => $footer));
+		}
 
 		return $this->template;
 	}

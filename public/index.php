@@ -8,6 +8,8 @@ Application::init();
 
 Request('GET', '/','Ctrl_index');
 
+Request('GET', '/login','Ctrl_user:login');
+
 //Request('GET', '/login','Ctrl_user:login');
 //Logger::all('тестовый лог', __FILE__, __LINE__);
 

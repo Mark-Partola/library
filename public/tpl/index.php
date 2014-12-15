@@ -1,5 +1,7 @@
 <?=$header?>
 
+<a href="<?=ROUTE_ROOT.'/user'?>">Страница пользователя</a>
+
 <div>
 	<?foreach($books as $book): ?>
 		<div>
