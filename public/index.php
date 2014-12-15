@@ -9,6 +9,9 @@ Application::init();
 Request('GET', '/','Ctrl_index');
 
 Request('GET', '/login','Ctrl_user:login');
+Request('POST', '/login','Ctrl_user:checkAuth');
+
+Request('GET', '/user/{id}','Ctrl_user:account');
 
 //Request('GET', '/login','Ctrl_user:login');
 //Logger::all('тестовый лог', __FILE__, __LINE__);

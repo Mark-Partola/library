@@ -11,7 +11,7 @@ abstract class Model_abstractDb{
 
 	public function all(/*$query*/){
 		$res = $this->db->query("SELECT * FROM `lib_books`");
-		$rows = $res->fetchAll(PDO::FETCH_ASSOC);
+		$rows = $res->fetchAll();
 		/*print_arr($rows);*/
 
 		return $rows;
@@ -20,7 +20,7 @@ abstract class Model_abstractDb{
 	public function filter($name, $mark, $value) {
 		$stmt = $this->db->prepare("SELECT * FROM `lib_books` WHERE `$name` $mark ?");
 		$stmt->execute(array($value));
-		$rows = $stmt->fetch(PDO::FETCH_ASSOC);
+		$rows = $stmt->fetch();
 		/*print_arr($rows);*/
 
 		return $rows;

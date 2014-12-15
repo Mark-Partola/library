@@ -17,6 +17,7 @@ class Model_databaseConnect{
 			try {
 				self::$instance = new PDO($dsn, USER, PASS);
 				self::$instance->exec("SET NAMES utf8");
+				self::$instance->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 				//Logger::all('тестовый лог3', __FILE__, __LINE__);
 			} catch (PDOException $e) {
 				Application::triggerError();

@@ -4,6 +4,10 @@ function filter_empty_str($value) {
 	return $value != '';
 }
 
+function clear_str($str) {
+	return strip_tags(trim($str));
+}
+
 /*
  *Обертка для класса, чтобы все роуты писать в одну строку
  */

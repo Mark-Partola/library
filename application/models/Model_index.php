@@ -28,7 +28,7 @@ class Model_index extends Model_abstractDb {
 		$sql = $this->books();
 		$result = $this->db->query($sql);
 		
-		return $result->fetchAll(PDO::FETCH_ASSOC);
+		return $result->fetchAll();
 	}
 
 	public function getBook($id) {
@@ -39,7 +39,7 @@ class Model_index extends Model_abstractDb {
 		$stmt->bindValue(1, $id, PDO::PARAM_INT);
 		$stmt->execute();
 
-		return $stmt->fetch(PDO::FETCH_ASSOC);
+		return $stmt->fetch();
 
 	}
 
