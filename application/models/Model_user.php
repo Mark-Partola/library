@@ -42,14 +42,18 @@ class Model_user extends Model_abstractDb {
 
 	public function getUserProfile($id){
 
-		$sql = "SELECT 	`id`, 
-						`fname`, 
-						`lname`, 
-						`birthday`, 
-						`phone`, 
-						`photo`
-					FROM `lib_users`
-						WHERE `id` = :id";
+		$sql = "SELECT	`u`.`id`, 
+						`u`.`fname`,
+						`u`.`lname`,
+						`u`.`birthday`,
+						`u`.`phone`,
+						`u`.`photo`,
+						`c`.`limit`,
+						`c`.`description`
+					FROM `lib_users` AS `u`
+						INNER JOIN `lib_clients` AS `c`
+							ON `c`.`user_id` = `u`.`id`
+					WHERE `u`.`id` = :id";
 
 		$stmt = $this->db->prepare($sql);
 		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
