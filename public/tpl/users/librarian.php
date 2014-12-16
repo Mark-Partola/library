@@ -1,11 +1,30 @@
 <?=$header?>
 
 <a href="<?=ROUTE_ROOT?>">Каталог</a>
+<br><br>
+<div style="margin: 20px;">
+		<div style="float: left; margin-right: 20px; width: 200px;">
+			<?if(!empty($user['photo'])): ?>
+				<img src="<?=$user['photo']?>" alt="">
+			<?else:?>
+				<img src="<?=ROUTE_ROOT?>/images/users/default.gif" alt="">
+			<?endif?>
+		</div>
+		<div style="float:left;">
+			<?//print_arr($user);?>
+			<h1 style="font-size: 2em; margin: 20px 10px; color: #3379f5"><? echo "{$user['fname']} {$user['patronymic']} {$user['lname']}";?></h1>
+			<div style="margin-left: 20px;">
+				Телефон: <span><?=$user['phone']?></span><br><br>
+				Почта: <span><?=$user['email']?></span>
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+</div>
 
 <div>
 	<h1 style="font-size: 2em; margin: 20px 10px;">Книги выданные вами:</h1>
 	<?foreach($myActions as $action): ?>
-		<div>
+		<div style="float:left; margin: 10px; width: 400px;">
 			<h2><a href="<?=ROUTE_ROOT?>/book/<?=$action['id']?>"><?=$action['title']?></a></h2>
 				<br>
 				<p>Находится у <? echo "{$action['fname']} {$action['patronymic']} {$action['lname']}";?></p>
@@ -22,6 +41,7 @@
 				</div>
 		</div>
 	<?endforeach?>
+	<div style="clear:both;"></div>
 </div>
 
 <?=$footer?>

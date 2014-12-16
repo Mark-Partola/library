@@ -49,7 +49,9 @@ class Model_user extends Model_abstractDb {
 						`phone`,
 						`photo`,
 						`limit`,
-						`description`
+						`description`,
+						`patronymic`,
+						`email`
 					FROM `lib_users`
 					WHERE `id` = :id";
 

@@ -38,6 +38,6 @@ Application::run();
 echo '<br>';
 echo '<br>';
 echo '<br>';
-echo 'Время работы: '. (microtime(true) - $start);
+echo 'Время генерации страницы: '. (microtime(true) - $start);
 
 ?>

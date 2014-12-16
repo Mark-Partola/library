@@ -1,7 +1,7 @@
 <?
 
 
-class Model_librarian extends Model_abstractDb {
+class Model_librarian extends Model_user {
 
 	private $model;
 
