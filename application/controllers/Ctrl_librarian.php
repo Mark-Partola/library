@@ -13,6 +13,8 @@ public function profile() {
 
 		$myActions = $this->model->getActionsById($_SESSION['user']['id']);
 
-		print_arr($myActions);
+		//print_arr($myActions);
+
+		echo $this->getTemplate('users/librarian', array('myActions' => $myActions), 'Авторизация');
 	}
 }

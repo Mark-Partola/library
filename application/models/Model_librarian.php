@@ -18,13 +18,13 @@ class Model_librarian extends Model_abstractDb {
 						`u`.`lname`,
 						`u`.`patronymic`,
 						`u`.`phone`,
-						`u`.`passport`
+						`u`.`passport`,
+						`a`.`expiration_date` as `exp`
 					FROM `lib_actions` as `a`
 					INNER JOIN `lib_books` as `b`
 						ON `a`.`book_id` = `b`.`id`
 					INNER JOIN `lib_users` as `u`
 						ON `a`.`user_id` = `u`.`id`
-
 					WHERE `a`.`libr_id` = :id ";
 
 		if($active === true) {
