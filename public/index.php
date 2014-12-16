@@ -10,9 +10,11 @@ Request('GET', '/','Ctrl_index');
 
 Request('GET', '/login','Ctrl_user:login');
 Request('GET', '/logout','Ctrl_user:logout');
+
 Request('POST', '/login','Ctrl_user:authorize');
 
-Request('GET', '/profile/','Ctrl_user:profile');
+Request('GET', '/profile','Ctrl_librarians:profile')->isRole(1);
+Request('GET', '/profile','Ctrl_user:profile');
 
 //Request('GET', '/login','Ctrl_user:login');
 //Logger::all('тестовый лог', __FILE__, __LINE__);

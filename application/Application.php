@@ -30,7 +30,11 @@ class Application {
 		$i = 1;
 		foreach($this->requests as &$request) {
 			self::$registered_path[] = $request->path;
+
+			if(($request->role !== 0) && ($request->role != $_SESSION['user']['role'])) continue;
+
 			$done = $request->run();
+
 			if($done) {
 				RequestLogger::log('Request',$_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
 				return true;

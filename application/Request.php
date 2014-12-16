@@ -30,6 +30,8 @@ class Request {
 	private $controller;
 	private $action;
 
+	public $role = 0;
+
 	public function __construct($method, $path, $callback) {
 		$this->method = strtolower($method);
 		//к пути добавляем корень приложения, например путь '/test', а корень '/root/app', будет /root/app/test
@@ -47,6 +49,7 @@ class Request {
 			$this->action = 'index';
 		}
 
+		//туду многократный вызов модели
 		$this->controller = new $controller;
 
 		//добавляем запрос в очередь
@@ -63,6 +66,10 @@ class Request {
 
 		//продолжаем цепочку
 		return $this;
+	}
+
+	public function isRole($id) {
+		$this->role = $id;
 	}
 
 	/*

@@ -32,24 +32,26 @@ class Ctrl_user extends Ctrl_base {
 
 		$this->model = new Model_user();
 
-		if(!$_SESSION['auth']) {
+		if(!$_SESSION['user']['auth']) {
 			header('Location: '.ROUTE_ROOT.'/login');
-		} else {
-			$user = $this->model->getUserProfile($_SESSION['auth']);
-			$books = $this->model->getUserBooks($_SESSION['auth']);
-
-			$profile = array_merge($user, $books);
-
-			$header = $this->generateTemplate('header', array('title' => 'Моя страница'));
-			$footer = $this->generateTemplate('footer');
-
-			$this->template = $this->generateTemplate('users/profile', array('header' => $header, 'footer' => $footer, 'books' => $books, 'user' => $user));
-
-			echo $this->template;
-
-
-			//echo $this->getTemplate('users/profile', array('profile' => $profile), 'Моя страница');
+			exit();
 		}
+
+		$user = $this->model->getUserProfile($_SESSION['user']['id']);
+
+		$books = $this->model->getUserBooks($_SESSION['user']['id']);
+
+		//$profile = array_merge($user, $books);
+
+		$header = $this->generateTemplate('header', array('title' => 'Моя страница'));
+		$footer = $this->generateTemplate('footer');
+
+		$this->template = $this->generateTemplate('users/profile', array('header' => $header, 'footer' => $footer, 'books' => $books, 'user' => $user));
+
+		echo $this->template;
+
+
+		//echo $this->getTemplate('users/profile', array('profile' => $profile), 'Моя страница');
 
 	}
 

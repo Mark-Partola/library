@@ -6,7 +6,7 @@ class Model_user extends Model_abstractDb {
 
 	public function login($login, $pass) {
 
-		$sql = "SELECT `id`
+		$sql = "SELECT `id`, `role`
 					FROM `lib_users`
 						WHERE `login` = :login
 							AND `password` = :pass";
@@ -19,17 +19,20 @@ class Model_user extends Model_abstractDb {
 		$result = $stmt->fetch();
 
 		if($result['id']) {
-			$_SESSION['auth'] = $result['id'];
+			$_SESSION['user']['auth'] = true;
+			$_SESSION['user']['id'] = $result['id'];
+			$_SESSION['user']['role'] = $result['role'];
 			header('Location: '.ROUTE_ROOT."/profile/");
 		} else {
-			$_SESSION['auth'] = false;
+			$_SESSION['user'] = false;
 			header('Location: '.ROUTE_ROOT.'/login');
 		}
 
 	}
 
 	public function logout() {
-		$_SESSION['auth'] = false;
+
+		$_SESSION['user'] = false;
 
 		if(!isAjax()) {
 			header('Location: '.$_SERVER['HTTP_REFERER']);
@@ -39,7 +42,12 @@ class Model_user extends Model_abstractDb {
 
 	public function getUserProfile($id){
 
-		$sql = "SELECT * 
+		$sql = "SELECT 	`id`, 
+						`fname`, 
+						`lname`, 
+						`birthday`, 
+						`phone`, 
+						`photo`
 					FROM `lib_users`
 						WHERE `id` = :id";
 
@@ -53,11 +61,11 @@ class Model_user extends Model_abstractDb {
 
 	public function getUserBooks($id) {
 
-		$sql = "SELECT 	`b`.`id`, 
-						`b`.`title`, 
-						`b`.`author`, 
-						`b`.`pub_year`, 
-						`b`.`image_preview` 
+		$sql = "SELECT 	`b`.`id`,
+						`b`.`title`,
+						`b`.`author`,
+						`b`.`pub_year`,
+						`b`.`image_preview`
 					FROM `lib_actions` as `a`
 					LEFT JOIN `lib_books`as `b`
 						ON `a`.`book_id` = `b`.`id`
