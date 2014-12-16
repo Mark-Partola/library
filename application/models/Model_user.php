@@ -42,18 +42,16 @@ class Model_user extends Model_abstractDb {
 
 	public function getUserProfile($id){
 
-		$sql = "SELECT	`u`.`id`, 
-						`u`.`fname`,
-						`u`.`lname`,
-						`u`.`birthday`,
-						`u`.`phone`,
-						`u`.`photo`,
-						`c`.`limit`,
-						`c`.`description`
-					FROM `lib_users` AS `u`
-						INNER JOIN `lib_clients` AS `c`
-							ON `c`.`user_id` = `u`.`id`
-					WHERE `u`.`id` = :id";
+		$sql = "SELECT	`id`, 
+						`fname`,
+						`lname`,
+						`birthday`,
+						`phone`,
+						`photo`,
+						`limit`,
+						`description`
+					FROM `lib_users`
+					WHERE `id` = :id";
 
 		$stmt = $this->db->prepare($sql);
 		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
@@ -71,7 +69,7 @@ class Model_user extends Model_abstractDb {
 						`b`.`pub_year`,
 						`b`.`image_preview`
 					FROM `lib_actions` as `a`
-					LEFT JOIN `lib_books`as `b`
+					INNER JOIN `lib_books`as `b`
 						ON `a`.`book_id` = `b`.`id`
 					WHERE `a`.`user_id` = :id
 						AND `a`.`status` = 1";
