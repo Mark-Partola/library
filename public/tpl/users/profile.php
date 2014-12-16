@@ -1,8 +1,8 @@
 <?=$header?>
 
-<a href="<?=ROUTE_ROOT.'/profile'?>">Страница пользователя</a>
+<a href="<?=ROUTE_ROOT?>">Каталог</a>
 
-<?print_arr($_SESSION);?>
+<? print_arr($user); ?>
 
 <div>
 	<?foreach($books as $book): ?>
@@ -13,7 +13,6 @@
 					<p><?=$book['author']?></p>
 					<p><?=$book['pub_year']?></p>
 				</div>
-			<a href="#"><?=$book['genre']?></a>
 		</div>
 	<?endforeach?>
 </div>

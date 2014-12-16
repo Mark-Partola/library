@@ -38,10 +38,17 @@ class Ctrl_user extends Ctrl_base {
 			$user = $this->model->getUserProfile($_SESSION['auth']);
 			$books = $this->model->getUserBooks($_SESSION['auth']);
 
-			$profile = array_merge($user);
-			$profile = array_merge($books);
+			$profile = array_merge($user, $books);
 
-			print_arr($profile);
+			$header = $this->generateTemplate('header', array('title' => 'Моя страница'));
+			$footer = $this->generateTemplate('footer');
+
+			$this->template = $this->generateTemplate('users/profile', array('header' => $header, 'footer' => $footer, 'books' => $books, 'user' => $user));
+
+			echo $this->template;
+
+
+			//echo $this->getTemplate('users/profile', array('profile' => $profile), 'Моя страница');
 		}
 
 	}

@@ -53,7 +53,12 @@ class Model_user extends Model_abstractDb {
 
 	public function getUserBooks($id) {
 
-		$sql = "SELECT `b`.`title`, `b`.`author`, `b`.`pub_year`, `b`.`image_preview`  FROM `lib_actions` as `a`
+		$sql = "SELECT 	`b`.`id`, 
+						`b`.`title`, 
+						`b`.`author`, 
+						`b`.`pub_year`, 
+						`b`.`image_preview` 
+					FROM `lib_actions` as `a`
 					LEFT JOIN `lib_books`as `b`
 						ON `a`.`book_id` = `b`.`id`
 					WHERE `a`.`user_id` = :id
