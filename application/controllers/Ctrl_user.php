@@ -36,7 +36,12 @@ class Ctrl_user extends Ctrl_base {
 			header('Location: '.ROUTE_ROOT.'/login');
 		} else {
 			$user = $this->model->getUserProfile($_SESSION['auth']);
-			print_arr($user);
+			$books = $this->model->getUserBooks($_SESSION['auth']);
+
+			$profile = array_merge($user);
+			$profile = array_merge($books);
+
+			print_arr($profile);
 		}
 
 	}
