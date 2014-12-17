@@ -69,7 +69,8 @@ class Model_user extends Model_abstractDb {
 						`b`.`title`,
 						`b`.`author`,
 						`b`.`pub_year`,
-						`b`.`image_preview`
+						`b`.`image_preview`,
+						`a`.`expiration_date` as `exp`
 					FROM `lib_actions` as `a`
 					INNER JOIN `lib_books`as `b`
 						ON `a`.`book_id` = `b`.`id`

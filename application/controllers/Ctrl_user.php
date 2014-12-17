@@ -28,7 +28,9 @@ class Ctrl_user extends Ctrl_base {
 
 	}
 
-	public function profile() {
+	public function profile($id=null) {
+
+		if($id === null) $id = $_SESSION['user']['id'];
 
 		$this->model = new Model_user();
 
@@ -37,16 +39,20 @@ class Ctrl_user extends Ctrl_base {
 			exit();
 		}
 
-		$user = $this->model->getUserProfile($_SESSION['user']['id']);
+		$user = $this->model->getUserProfile($id);
 
-		$books = $this->model->getUserBooks($_SESSION['user']['id']);
+		if(empty($user)){
+			return false;
+		}
+
+		$books = $this->model->getUserBooks($id);
 
 		//$profile = array_merge($user, $books);
 
 		$header = $this->generateTemplate('header', array('title' => 'Моя страница'));
 		$footer = $this->generateTemplate('footer');
 
-		$this->template = $this->generateTemplate('users/profile', array('header' => $header, 'footer' => $footer, 'books' => $books, 'user' => $user));
+		$this->template = $this->generateTemplate('users/client', array('header' => $header, 'footer' => $footer, 'books' => $books, 'user' => $user));
 
 		echo $this->template;
 

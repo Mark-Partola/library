@@ -3,11 +3,11 @@
 <a href="<?=ROUTE_ROOT?>">Каталог</a>
 <br><br>
 <div style="margin: 20px;">
-		<div style="float: left; margin-right: 20px; width: 200px;">
+		<div style="float: left; margin-right: 20px; width: 300px;">
 			<?if(!empty($user['photo'])): ?>
-				<img src="<?=$user['photo']?>" alt="">
+				<img style="width: 300px;" src="<?=ROUTE_ROOT?>/images/users/avatars/<?=$user['photo']?>" alt="">
 			<?else:?>
-				<img src="<?=ROUTE_ROOT?>/images/users/default.gif" alt="">
+				<img src="<?=ROUTE_ROOT?>/images/users/avatars/default.gif" alt="">
 			<?endif?>
 		</div>
 		<div style="float:left;">

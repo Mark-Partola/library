@@ -16,6 +16,8 @@ Request('POST', '/login','Ctrl_user:authorize');
 Request('GET', '/profile','Ctrl_librarian:profile')->isRole(1);
 Request('GET', '/profile','Ctrl_user:profile');
 
+Request('GET', '/profile/{id}','Ctrl_librarian:getProfile')->isRole(1);
+
 //Request('GET', '/login','Ctrl_user:login');
 //Logger::all('тестовый лог', __FILE__, __LINE__);
 

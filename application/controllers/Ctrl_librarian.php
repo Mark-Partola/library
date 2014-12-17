@@ -1,8 +1,8 @@
 <?
 
-class Ctrl_librarian extends Ctrl_base {
+class Ctrl_librarian extends Ctrl_user{
 
-public function profile() {
+	public function profile() {
 
 
 		$this->model = new Model_librarian();
@@ -26,4 +26,11 @@ public function profile() {
 
 		echo $this->template;
 	}
+
+	public function getProfile($id) {
+
+		if(parent::profile($id) === false)
+			echo $this->getTemplate('users/404', null, 'Нету :(');
+	}
+
 }
