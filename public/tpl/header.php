@@ -18,6 +18,20 @@
 </head>
 <body>
 
-	<a href="<?=ROUTE_ROOT.'/logout'?>">Выход</a>
-	<a href="<?=ROUTE_ROOT.'/login'?>">Вход</a>
-	<button id="exit">выйти</button>
+<div class="wrapper">
+	<div id="header">
+		<img src="<?=ROUTE_ROOT?>/images/header.jpeg">
+		<div id="logo"><b>Sharaga`s Book</b></div>
+		<div id="top_nav">
+			<ul class="right">
+				<?if($_SESSION['user']): ?>
+					<li><a href="<?=ROUTE_ROOT.'/logout'?>">Выход</a></li>
+				<?else:?>
+					<li><a href="<?=ROUTE_ROOT.'/login'?>">Вход</a></li>
+				<?endif?>
+			</ul>
+			<ul>
+				<li class="rb"><a href="<?=ROUTE_ROOT?>" class="home">Главная</a></li><li class="lb"><a href="<?=ROUTE_ROOT?>/profile">Моя страница</a></li>
+			</ul>
+		</div>
+	</div>

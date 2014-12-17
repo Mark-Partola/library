@@ -2,8 +2,6 @@
 
 <a href="<?=ROUTE_ROOT.'/profile'?>">Страница пользователя</a>
 
-<?print_arr($_SESSION);?>
-
 <div>
 	<?foreach($books as $book): ?>
 		<div>
