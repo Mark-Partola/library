@@ -29,6 +29,10 @@ class Ctrl_librarian extends Ctrl_user{
 
 	public function getProfile($id) {
 
+		if($id === $_SESSION['user']['id']) {
+			header('Location: '.ROUTE_ROOT.'/profile');
+		}
+
 		if(parent::profile($id) === false)
 			echo $this->getTemplate('users/404', null, 'Нету :(');
 	}
