@@ -1,8 +1,6 @@
 <?=$header?>
 
-<a href="<?=ROUTE_ROOT.'/profile'?>">Страница пользователя</a>
-
-<div>
+<div id="content">
 	<?foreach($books as $book): ?>
 		<div>
 			<h1><a href="<?=ROUTE_ROOT?>/book/<?=$book['id']?>"><?=$book['title']?></a></h1>

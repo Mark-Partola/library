@@ -4,6 +4,9 @@ body{
 
 	font-family: tahoma,arial,verdana,sans-serif, sans;
 }
+.fixed {
+	position: fixed;
+}
 
 .wrapper{
 	width: 1360px;
@@ -41,7 +44,15 @@ body{
 #top_nav{
 	background-color: #4E7097;
 	border-radius: 3px;
-	height: 50px;
+	height: 70px;
+
+	position: fixed;
+	width: 1360px;
+
+	z-index: 1000;
+}
+#top_nav:hover{
+	opacity: 1 !important;
 }
 
 #top_nav ul{
@@ -63,8 +74,9 @@ body{
 	text-decoration: none;
 	height: 100%;
 	/*background-color: #4E7097;*/
-	padding: 17px;
+	padding: 24px;
 	text-align: center;
+	font-size: 1.3em;
 }
 
 #top_nav ul li a:hover{
@@ -73,7 +85,7 @@ body{
 
 #top_nav .home{
 	padding-left: 55px;
-	background: url(../images/home.png) 10px 8px no-repeat;
+	background: url(../images/home.png) 10px 15px no-repeat;
 	-webkit-background-size: 32px;
 	background-size: 32px;
 }
@@ -83,5 +95,9 @@ li.rb{
 }
 li.lb{
 	border-left: 1px solid #2E5067;
+}
+
+#content{
+	margin-top: 100px;
 }
 
