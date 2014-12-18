@@ -22,9 +22,9 @@
 	<div id="header">
 		<img src="<?=ROUTE_ROOT?>/images/header.jpeg">
 		<div id="logo"><b>Sharaga`s Book</b></div>
-		<div id="top_nav">
+		<div id="top_nav" class="nav">
 			<ul class="right">
-				<?if($_SESSION['user']): ?>
+				<?if(isset($_SESSION['user']) && !empty($_SESSION['user'])) : ?>
 					<li><a href="<?=ROUTE_ROOT.'/logout'?>">Выход</a></li>
 				<?else:?>
 					<li><a href="<?=ROUTE_ROOT.'/login'?>">Вход</a></li>

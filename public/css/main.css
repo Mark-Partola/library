@@ -1,6 +1,10 @@
+html, body{
+	height: 100%;
+}
+
 body{
-	background-color: #ccc;
-	background-image: url(../images/bg.png) ;
+	background-color: #fefefe;
+	background: url(../images/bg.jpg) fixed;
 
 	font-family: tahoma,arial,verdana,sans-serif, sans;
 }
@@ -10,7 +14,11 @@ body{
 
 .wrapper{
 	width: 1360px;
+	min-height: 100%;
 	margin: 0 auto;
+	/* overflow: hidden; */
+	padding-bottom: 130px;
+	box-sizing: border-box;
 }
 
 #header{
@@ -41,6 +49,41 @@ body{
 	left: 10px;
 }
 
+.nav ul{
+	list-style: none;
+}
+.nav ul li{
+	display: inline-block;
+	min-width: 100px;
+}
+.nav ul li a{
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	height: 100%;
+	/*background-color: #4E7097;*/
+	padding: 24px;
+	text-align: center;
+	font-size: 1.3em;
+}
+
+.header{
+	color: #4E7097;
+	font-size: 2em;
+	margin: 20px;
+}
+
+.header_small{
+	font-size: 1em;
+	color: #4E7097;
+}
+
+
+
+#top_nav ul li a:hover{
+	background-color: #2E5067 !important;
+}
+
 #top_nav{
 	background-color: #4E7097;
 	border-radius: 3px;
@@ -55,33 +98,29 @@ body{
 	opacity: 1 !important;
 }
 
-#top_nav ul{
+/*#top_nav ul{
 	list-style: none;
-}
+}*/
 
 #top_nav ul.right{
 	float: right;
 }
 
-#top_nav ul li{
+/* #top_nav ul li{
 	display: inline-block;
 	min-width: 100px;
 }
-
-#top_nav ul li a{
+ */
+/*#top_nav ul li a{
 	display: block;
 	color: #fff;
 	text-decoration: none;
 	height: 100%;
-	/*background-color: #4E7097;*/
+	/*background-color: #4E7097;
 	padding: 24px;
 	text-align: center;
 	font-size: 1.3em;
-}
-
-#top_nav ul li a:hover{
-	background-color: #2E5067;
-}
+}*/
 
 #top_nav .home{
 	padding-left: 55px;
@@ -99,5 +138,170 @@ li.lb{
 
 #content{
 	margin-top: 100px;
+	border: 1px solid #DEE5EB;
+	/* box-shadow: 0 0 10px 10px #DEE5EB; */
+	background: url(../images/inner_bg.jpg);
 }
 
+#content.mp{
+	padding: 20px;
+	margin-right: 0;
+}
+
+#status_page{
+	background: #DEE5EB;
+	width: 100%;
+	padding:20px 0px 20px 20px;
+	color: #607387;
+	font-size: 1.1em;
+}
+
+#user_info{
+	margin: 20px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #DEE5EB;
+}
+
+#profile_info{
+	float: left;
+	margin-right: 20px;
+}
+#user_name{
+	font-size: 2em;
+	margin: 20px 20px 20px 320px;
+	border-bottom: 1px solid #DEE5EB;
+	color: #4E7097;
+}
+
+#user_books{
+	width: 86%;
+	margin: 0 auto;
+}
+
+.book {
+	float: left;
+	width: 300px;
+	height: 370px;
+	margin: 20px;
+	text-align: center;
+	border-radius: 5px;
+}
+
+#user_books .book{
+	background: url(../images/bg_book.jpg);
+	padding: 20px;
+	border: 1px solid #4E7097;
+}
+
+#mp_books .book{
+	padding: 20px 5px 10px;
+	background: #DEE5EB;
+	border: 5px solid #6E90B7;
+	box-shadow: 0px 0px 10px 2px #6E90B7;
+	word-wrap: break-word;
+}
+
+.book_title{
+	margin-bottom: 10px;
+	height: 3em;
+}
+.book_title a{
+	text-decoration: none;
+	color: #4E7097;
+}
+
+#user_books .book_title a{
+	text-decoration: none;
+	color: #fff;
+}
+
+.book_info{
+	background: #DEE5EB;
+	background-image: url(../images/bg.png);
+	width: 70%;
+	height: 250px;
+	margin: 0 auto;
+	padding: 20px;
+	border-radius: 5px;
+}
+.book_info > div{
+	padding-top: 10px;
+	color: #2E5067;
+}
+
+.limit_date{
+	padding: 10px;
+	color: #fff;
+}
+
+#footer{
+	width: 1366px;
+	margin: -115px auto;
+	border-top: 1px solid #DEE5EB; 
+	border-radius: 0px 0px 10px 10px;
+	/*background-color: #4E7097;*/
+	overflow: hidden;
+	text-align: center;
+}
+
+#footer .nav{
+	font-size: 0.8em;
+	height: 100%;
+}
+#footer .nav a{
+	color: #2E5067;
+}
+
+#footer .nav li:hover a{
+	text-decoration: underline;
+}
+
+#footer .copy {
+	padding-bottom: 10px;
+	color: #2E5067;
+}
+
+#main_block, #right_block{
+	float: left;
+}
+
+#main_block{
+	width: 83%;
+	border-right: 1px solid #DEE5EB;
+}
+
+#right_block{
+	position: relative;
+	width: 16%;
+	margin-top: 20px;
+	box-sizing: border-box;
+}
+#right_block .fixed{
+	position: fixed;
+	background: #DEE5EB;
+	border: 1px solid #BEC5CB;
+	border-radius: 10px;
+	height: 300px;
+	padding: 20px;
+}
+
+#top_scroll{
+	display: none;
+	position: fixed;
+	top: 0;
+	width: 130px;
+	height: 100%;
+	background: url(../images/top.png) no-repeat;
+	background-color: rgba(78, 112, 151, 0.2);
+	color: #2E5067;
+	font-size: 1.5em;
+	padding: 100px 10px 10px 10px;
+	text-align: center;
+	cursor: pointer;
+	transition: all 0.1s;
+}
+
+#top_scroll:hover{
+	transition: all 0.1s;
+	background-color: rgba(78, 112, 151, 0.6);
+}

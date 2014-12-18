@@ -1,7 +1,13 @@
 var h_hght = 284;
 var h_mrg = 2; 
 
+var br_hght = 500;
+var br_mrg = 77; 
+
 $(function(){
+
+	var scroll_block = $('#top_scroll');
+
 	$(window).scroll(function(){
 		var top = $(this).scrollTop();
 		var elem = $('#top_nav');
@@ -10,5 +16,23 @@ $(function(){
 		} else {
 			elem.css({'top': h_mrg, 'opacity': 0.5});
 		}
+
+		var elem = $('#right_block .fixed');
+		if (top+br_mrg < br_hght) {
+			elem.css({'top': (br_hght-top)});
+		} else {
+			elem.css({'top': br_mrg});
+		}
+
+		if(top > h_hght) {
+			scroll_block.css({'display': 'block'});
+		} else {
+			scroll_block.css({'display': 'none'});
+		}
 	});
+
+	$('#top_scroll').on('click', function(){
+		$('html').animate({ scrollTop: 0 }, 300);
+	});
+
 });

@@ -1,5 +1,5 @@
 <?php
-$start = microtime(true);
+//$start = microtime(true);
 
 require_once __DIR__.'/../application/Application.php';
 
@@ -37,9 +37,9 @@ Request('GET', '/test','Ctrl_index:getNew');
 Application::run();
 
 
-echo '<br>';
-echo '<br>';
-echo '<br>';
-echo 'Время генерации страницы: '. (microtime(true) - $start);
+//cho '<br>';
+//echo '<br>';
+//echo '<br>';
+//echo 'Время генерации страницы: '. (microtime(true) - $start);
 
 ?>
