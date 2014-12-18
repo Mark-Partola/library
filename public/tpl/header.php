@@ -25,13 +25,13 @@
 		<div id="top_nav" class="nav">
 			<ul class="right">
 				<?if(isset($_SESSION['user']) && !empty($_SESSION['user'])) : ?>
-					<li><a href="<?=ROUTE_ROOT.'/logout'?>">Выход</a></li>
+					<li><a class="user_ico" href="<?=ROUTE_ROOT.'/logout'?>">Выход</a></li>
 				<?else:?>
-					<li><a href="<?=ROUTE_ROOT.'/login'?>">Вход</a></li>
+					<li><a class="user_ico" href="<?=ROUTE_ROOT.'/login'?>">Вход</a></li>
 				<?endif?>
 			</ul>
 			<ul>
-				<li class="rb"><a href="<?=ROUTE_ROOT?>" class="home">Главная</a></li><li class="lb"><a href="<?=ROUTE_ROOT?>/profile">Моя страница</a></li>
+				<li class="rb"><a href="<?=ROUTE_ROOT?>" class="home_ico">Главная</a></li><li class="lb"><a href="<?=ROUTE_ROOT?>/profile">Моя страница</a></li>
 			</ul>
 		</div>
 	</div>

@@ -8,7 +8,10 @@ $(function(){
 
 	var scroll_block = $('#top_scroll');
 
+	/*скользящее меню и блок с параметрами каталога*/
+
 	$(window).scroll(function(){
+
 		var top = $(this).scrollTop();
 		var elem = $('#top_nav');
 		if (top+h_mrg < h_hght) {
@@ -31,8 +34,21 @@ $(function(){
 		}
 	});
 
+	/*Прогрутка странница вверх*/
+
 	$('#top_scroll').on('click', function(){
 		$('html').animate({ scrollTop: 0 }, 300);
+	});
+
+	/*Добавление заказа*/
+
+	$('.btn.order_book').on('click', function(){
+		var id = $(this).data('book-id');
+
+		$.get(window.location.href+"/add/"+id, function(data){
+			alert(data);
+		});
+
 	});
 
 });

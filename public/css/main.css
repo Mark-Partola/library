@@ -3,11 +3,31 @@ html, body{
 }
 
 body{
-	background-color: #fefefe;
 	background: url(../images/bg.jpg) fixed;
 
 	font-family: tahoma,arial,verdana,sans-serif, sans;
 }
+
+.btn{
+	box-sizing: content-box;
+	display: inline-block;
+	width: 200px;
+	line-height: 40px;
+	background-color: #4E7097;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+}
+
+.btn:hover{
+	background-color: #5E80a7;
+	-webkit-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	transition: all 0.2s;
+}
+
 .fixed {
 	position: fixed;
 }
@@ -16,7 +36,7 @@ body{
 	width: 1360px;
 	min-height: 100%;
 	margin: 0 auto;
-	/* overflow: hidden; */
+	overflow: hidden;
 	padding-bottom: 130px;
 	box-sizing: border-box;
 }
@@ -98,33 +118,20 @@ body{
 	opacity: 1 !important;
 }
 
-/*#top_nav ul{
-	list-style: none;
-}*/
-
 #top_nav ul.right{
 	float: right;
 }
 
-/* #top_nav ul li{
-	display: inline-block;
-	min-width: 100px;
-}
- */
-/*#top_nav ul li a{
-	display: block;
-	color: #fff;
-	text-decoration: none;
-	height: 100%;
-	/*background-color: #4E7097;
-	padding: 24px;
-	text-align: center;
-	font-size: 1.3em;
-}*/
-
-#top_nav .home{
+#top_nav .home_ico{
 	padding-left: 55px;
 	background: url(../images/home.png) 10px 15px no-repeat;
+	-webkit-background-size: 32px;
+	background-size: 32px;
+}
+
+#top_nav .user_ico{
+	padding-left: 55px;
+	background: url(../images/user.png) 10px 15px no-repeat;
 	-webkit-background-size: 32px;
 	background-size: 32px;
 }
@@ -139,7 +146,6 @@ li.lb{
 #content{
 	margin-top: 100px;
 	border: 1px solid #DEE5EB;
-	/* box-shadow: 0 0 10px 10px #DEE5EB; */
 	background: url(../images/inner_bg.jpg);
 }
 
@@ -166,6 +172,7 @@ li.lb{
 	float: left;
 	margin-right: 20px;
 }
+
 #user_name{
 	font-size: 2em;
 	margin: 20px 20px 20px 320px;
@@ -173,24 +180,17 @@ li.lb{
 	color: #4E7097;
 }
 
-#user_books{
-	width: 86%;
-	margin: 0 auto;
-}
-
 .book {
 	float: left;
 	width: 300px;
-	height: 370px;
+	height: 410px;
 	margin: 20px;
 	text-align: center;
 	border-radius: 5px;
-}
 
-#user_books .book{
-	background: url(../images/bg_book.jpg);
-	padding: 20px;
-	border: 1px solid #4E7097;
+	-webkit-transition: all, 0.5s;
+	-o-transition: all, 0.5s;
+	transition: all, 0.5s;
 }
 
 #mp_books .book{
@@ -205,9 +205,17 @@ li.lb{
 	margin-bottom: 10px;
 	height: 3em;
 }
-.book_title a{
+.link_book{
 	text-decoration: none;
 	color: #4E7097;
+}
+
+.book:hover{
+	margin-top: 10px;
+	margin-bottom: 30px;
+	-webkit-transition: all, 0.5s;
+	-o-transition: all, 0.5s;
+	transition: all, 0.5s;
 }
 
 #user_books .book_title a{
@@ -231,7 +239,11 @@ li.lb{
 
 .limit_date{
 	padding: 10px;
-	color: #fff;
+	color: #2E5067;
+}
+
+.where_book{
+	color: #2E5067;
 }
 
 #footer{

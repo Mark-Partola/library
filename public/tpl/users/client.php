@@ -25,7 +25,7 @@
 	</div>
 
 	<h1 class="header">Книги на руках:</h1>
-	<div id="user_books">
+	<div id="mp_books">
 		<?foreach($books as $book): ?>
 			<div class="book">
 				<h1 class="book_title"><a href="<?=ROUTE_ROOT?>/book/<?=$book['id']?>"><?=$book['title']?></a></h1>

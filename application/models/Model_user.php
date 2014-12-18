@@ -55,11 +55,15 @@ class Model_user extends Model_abstractDb {
 					FROM `lib_users`
 					WHERE `id` = :id";
 
-		$stmt = $this->db->prepare($sql);
-		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
-		$stmt->execute();
+		try{
+			$stmt = $this->db->prepare($sql);
+			$stmt->bindValue(':id', $id, PDO::PARAM_INT);
+			$stmt->execute();
 
-		return $stmt->fetch();
+			return $stmt->fetch();
+		} catch(Exception $e) {
+			return false;
+		}
 
 	}
 
@@ -77,11 +81,51 @@ class Model_user extends Model_abstractDb {
 					WHERE `a`.`user_id` = :id
 						AND `a`.`status` = 1";
 
-		$stmt = $this->db->prepare($sql);
-		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
-		$stmt->execute();
+		try{
+			$stmt = $this->db->prepare($sql);
+			$stmt->bindValue(':id', $id, PDO::PARAM_INT);
+			$stmt->execute();
 
-		return $stmt->fetchAll();
+			return $stmt->fetchAll();
+		} catch(Exception $e) {
+			return false;
+		}
+
+	}
+
+	public function addBook($book_id, $user_id) {
+
+		$sql = "SELECT count(id) as `count`
+					FROM `lib_expectations`
+						WHERE `user_id` = :user
+							AND `book_id` = :book";
+
+		try{
+			$stmt = $this->db->prepare($sql);
+			$stmt->bindValue(':user', $user_id, PDO::PARAM_INT);
+			$stmt->bindValue(':book', $book_id, PDO::PARAM_INT);
+			$stmt->execute();
+			$res = $stmt->fetch();
+		} catch(Exception $e) {
+			return false;
+		}
+
+		if($res['count'] != 0) return 0;
+
+		$sql = "INSERT INTO `lib_expectations`
+			VALUES(null,:user,:book)";
+
+		try{
+			$stmt = $this->db->prepare($sql);
+			$stmt->bindValue(':user', $user_id, PDO::PARAM_INT);
+			$stmt->bindValue(':book', $book_id, PDO::PARAM_INT);
+			$stmt->execute();
+		} catch(Exception $e) {
+			return false;
+		}
+
+		if($stmt->rowCount() === 1) return true;
+
 	}
 
 }

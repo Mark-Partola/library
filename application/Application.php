@@ -31,7 +31,7 @@ class Application {
 		foreach($this->requests as &$request) {
 			self::$registered_path[] = $request->path;
 
-			if(($request->role !== 0) && ($request->role != $_SESSION['user']['role'])) continue;
+			if(isset($_SESSION['user']['role']) && ($request->role !== 0) && ($request->role != $_SESSION['user']['role'])) continue;
 
 			$done = $request->run();
 

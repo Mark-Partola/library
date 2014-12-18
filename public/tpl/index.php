@@ -6,7 +6,8 @@
 		<div id="mp_books">
 			<?foreach($books as $book): ?>
 				<div class="book">
-					<h2 class="book_title"><a href="<?=ROUTE_ROOT?>/book/<?=$book['id']?>"><?=$book['title']?></a></h2>
+					<a href="<?=ROUTE_ROOT?>/book/<?=$book['id']?>" class="link_book">
+					<h2 class="book_title"><?=$book['title']?></h2>
 					<div class="book_info">
 						<img src="<?=ROUTE_ROOT.$book['image_preview']?>" alt="<?=$book['title']?>" width="120px">
 						<div>
@@ -14,6 +15,8 @@
 							<p><?=$book['pub_year']?></p>
 						</div>
 					</div>
+					</a>
+					<button class="btn order_book" data-book-id="<?=$book['id']?>">Добавить</button>
 				</div>
 			<?endforeach?>
 			<div style="clear:both;"></div>

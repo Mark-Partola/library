@@ -14,7 +14,7 @@ class Ctrl_librarian extends Ctrl_user{
 			exit();
 		}
 
-		$myActions = $this->model->getActionsById($_SESSION['user']['id']);
+		$books = $this->model->getActionsById($_SESSION['user']['id']);
 
 		//print_arr($myActions);
 
@@ -22,7 +22,7 @@ class Ctrl_librarian extends Ctrl_user{
 		$header = $this->generateTemplate('header', array('title' => 'Моя страница'));
 		$footer = $this->generateTemplate('footer');
 
-		$this->template = $this->generateTemplate('users/librarian', array('header' => $header, 'footer' => $footer, 'myActions' => $myActions, 'user' => $user));
+		$this->template = $this->generateTemplate('users/librarian', array('header' => $header, 'footer' => $footer, 'books' => $books, 'user' => $user));
 
 		echo $this->template;
 	}
