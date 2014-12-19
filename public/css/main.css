@@ -334,3 +334,39 @@ li.lb{
 	box-sizing: border-box;
 	text-align: center;
 }
+
+/*книга детально*/
+
+#detail_book{
+	margin: 20px;
+}
+
+#detail_book .detail_image{
+	width: 250px;
+	padding: 30px;
+	margin-right: 50px;
+	background-color: #DEE5EB;
+	border-radius: 10px;
+	float: left;
+}
+
+#detail_book .detail_info{
+	margin-left: 330px;
+	margin-bottom: 20px;
+	padding: 30px;
+	background-color: #DEE5EB;
+}
+
+.detail_info p {
+	display: inline;
+}
+
+.detail_info h3{
+	width: 20%;
+	float: left;
+}
+
+
+.detail_info .info{
+	margin-bottom: 10px;
+}

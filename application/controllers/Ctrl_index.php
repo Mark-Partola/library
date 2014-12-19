@@ -27,7 +27,7 @@ class Ctrl_index extends Ctrl_base {
 		//extract($args);
 
 		$this->model = new Model_index();
-		$book = $this->model->getBook($id);
+		$book = $this->model->getDetailBook($id);
 
 		$title = "тест";
 		$header = $this->generateTemplate('header', array('title' => $title));

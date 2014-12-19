@@ -31,7 +31,7 @@ class Model_index extends Model_abstractDb {
 		return $result->fetchAll();
 	}
 
-	public function getBook($id) {
+/*	public function getBook($id) {
 
 		$sql = $this->books('id');
 
@@ -40,6 +40,34 @@ class Model_index extends Model_abstractDb {
 		$stmt->execute();
 
 		return $stmt->fetch();
+
+	}
+*/
+	public function getDetailBook($id_book) {
+
+		$sql = "SELECT	`b`.`isbn`,
+						`b`.`title`,
+						`b`.`author`,
+						`b`.`pub_year`,
+						`g`.`genre`,
+						`b`.`image`,
+						`b`.`description`,
+						`b`.`publisher`,
+						`b`.`volume`
+			FROM `lib_books` AS `b`
+				LEFT JOIN `lib_genres` AS `g` 
+					ON `b`.`genre_id` = `g`.`id`
+			WHERE `b`.`id` = :id_book";
+
+		try {
+			$stmt = $this->db->prepare($sql);
+			$stmt->bindValue('id_book', $id_book, PDO::PARAM_INT);
+			$stmt->execute();
+
+			return $stmt->fetch();
+		} catch(Exception $e) {
+			return false;
+		}
 
 	}
 
