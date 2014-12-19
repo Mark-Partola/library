@@ -73,6 +73,9 @@ $(function(){
 
 			$('[data-book-id='+id+']').parent('.book').remove();
 
+			var len = document.querySelectorAll('.book .del_from_exp').length;
+			if(len == 0) $('.header_exp').remove();
+
 			setTimeout(function(){
 				$('#notice').fadeOut();
 			}, 3000);

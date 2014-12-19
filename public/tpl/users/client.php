@@ -50,7 +50,9 @@
 		<div style="clear:both;"></div>
 	</div>
 
-	<h1 class="header">Ожидают оформления</h1>
+	<?if(!empty($expBooks)):?>
+		<h1 class="header header_exp">Ожидают оформления</h1>
+	<?endif?>
 	<div class="mp_books">
 		<?foreach($expBooks as $book): ?>
 			<div class="book">
