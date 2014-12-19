@@ -45,7 +45,11 @@ $(function(){
 	$('.btn.order_book').on('click', function(){
 		var id = $(this).data('book-id');
 
-		$.get(window.location.href+"/add/"+id, function(data){
+		var path = (window.location.href);
+		var index = path.indexOf('/book');
+		path = path.substr(0,index);
+
+		$.get(path+"/add/"+id, function(data){
 			var notice = $('#notice');
 			notice.fadeIn();
 			notice.text(data);

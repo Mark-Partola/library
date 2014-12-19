@@ -3,11 +3,11 @@
 
 class Model_librarian extends Model_user {
 
-	private $model;
 
 	public function getActionsById($id, $active=null) {
 
-		$sql = "SELECT	`b`.`title`,
+		$sql = "SELECT	`b`.`id`,
+						`b`.`title`,
 						`b`.`isbn`,
 						`b`.`author`,
 						`b`.`publisher`,
@@ -33,11 +33,35 @@ class Model_librarian extends Model_user {
 			$sql .= "AND `status` = 0";
 		}
 
-		$stmt = $this->db->prepare($sql);
-		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
-		$stmt->execute();
+		try{
+			$stmt = $this->db->prepare($sql);
+			$stmt->bindValue(':id', $id, PDO::PARAM_INT);
+			$stmt->execute();
 
-		return $stmt->fetchAll();
+			return $stmt->fetchAll();
+		}catch(Exception $e){
+			return false;
+		}
+
+	}
+
+	public function getExpBooks(){
+
+		$sql = "SELECT *
+					FROM `lib_expectations` as `e`
+						INNER JOIN `lib_users` as `u`
+							ON `e`.`user_id` = `u`.`id`
+						INNER JOIN `lib_books` as `b`
+							ON `e`.`book_id` = `b`.`id`";
+
+		try{
+			$res = $this->db->query($sql);
+
+			return $res->fetchAll();
+		}catch(Exception $e){
+			return false;
+		}
+
 	}
 
 }

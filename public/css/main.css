@@ -183,7 +183,7 @@ li.lb{
 .book {
 	float: left;
 	width: 300px;
-	height: 410px;
+	height: 420px;
 	margin: 20px;
 	text-align: center;
 	border-radius: 5px;
@@ -231,6 +231,7 @@ li.lb{
 	margin: 0 auto;
 	padding: 20px;
 	border-radius: 5px;
+	margin-bottom: 10px;
 }
 .book_info > div{
 	padding-top: 10px;
@@ -243,6 +244,7 @@ li.lb{
 }
 
 .where_book{
+	margin-top: 10px;
 	color: #2E5067;
 }
 
@@ -348,6 +350,11 @@ li.lb{
 	background-color: #DEE5EB;
 	border-radius: 10px;
 	float: left;
+	text-align: center;
+}
+
+.detail_image img{
+	margin-bottom: 20px;
 }
 
 #detail_book .detail_info{

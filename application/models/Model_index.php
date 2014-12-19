@@ -46,6 +46,7 @@ class Model_index extends Model_abstractDb {
 	public function getDetailBook($id_book) {
 
 		$sql = "SELECT	`b`.`isbn`,
+						`b`.`id`,
 						`b`.`title`,
 						`b`.`author`,
 						`b`.`pub_year`,

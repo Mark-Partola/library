@@ -28,7 +28,7 @@
 		<?foreach($books as $book): ?>
 			<div class="book">
 				<a href="<?=ROUTE_ROOT?>/book/<?=$book['id']?>" class="link_book">
-					<h1 class="book_title">><?=$book['title']?></h1>
+					<h1 class="book_title"><?=$book['title']?></h1>
 					<div class="book_info">
 						<img src="<?=ROUTE_ROOT.$book['image_preview']?>" alt="<?=$book['title']?>" width="120px">
 						<div>
@@ -45,6 +45,27 @@
 					<?endif?>
 				</div>
 				<p class="where_book">Находится у <? echo "{$book['fname']} {$book['patronymic']} {$book['lname']}";?></p>
+			</div>
+		<?endforeach?>
+		<div style="clear:both;"></div>
+	</div>
+
+	<h1 class="header">Ожидающие выдачи</h1>
+	<div class="mp_books">
+		<?foreach($expBooks as $book): ?>
+			<div class="book">
+				<a href="<?=ROUTE_ROOT?>/book/<?=$book['id']?>" class="link_book">
+					<h1 class="book_title"><?=$book['title']?></h1>
+					<div class="book_info">
+						<img src="<?=ROUTE_ROOT.$book['image_preview']?>" alt="<?=$book['title']?>" width="120px">
+						<div>
+							<p><?=$book['author']?></p>
+							<p><?=$book['pub_year']?></p>
+						</div>
+						<p class="where_book">Ожидает <? echo "{$book['fname']} {$book['patronymic']} {$book['lname']}";?></p>
+					</div>
+				</a>
+				<button class="btn">Подтвердить</button>
 			</div>
 		<?endforeach?>
 		<div style="clear:both;"></div>
