@@ -101,21 +101,22 @@ $(function(){
 		var index = path.indexOf('/profile');
 		path = path.substr(0,index);
 
-		var confirm;
+		var attrs = {};
+		var ins = $(this).parent('.book').find('input:checked').each(function(){
+			attrs[$(this).attr('name')] = true;
+		});
 
-		$.getJSON(path+"/accept/"+id, function(data){
+		var query = '?';
+		for(var key in attrs) {
+			query += key+'='+attrs[key]+'&';
+		}
+
+		console.log(query);
+
+		$.getJSON(path+"/accept/"+id+query, function(data){
 			var notice = $('#notice');
-
-			if(data['confirm']) {
-				confirm = prompt(data['msg']+'\nВы действительно хотите добавить? \nВведите имя пользователя для подтверждения:');
-			}
-
-			$.getJSON(path+"/accept/"+id+"?forcibly="+confirm);
-
-			if(!confirm) {
-				notice.fadeIn();
-				notice.text(data['msg']);
-			}
+			notice.fadeIn();
+			notice.text(data['msg']);
 
 			setTimeout(function(){
 				$('#notice').fadeOut();

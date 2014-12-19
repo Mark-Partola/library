@@ -65,6 +65,8 @@
 						<p class="where_book">Ожидает <? echo "{$book['fname']} {$book['lname']}";?></p>
 					</div>
 				</a>
+				<label>Имеется <input type="checkbox" name="have"></label>
+				<label>Лимит <input type="checkbox" name="limit"></label>
 				<button class="btn libr_add_book_exp" data-book-id="<?=$book['exp_id']?>">Подтвердить</button>
 			</div>
 		<?endforeach?>

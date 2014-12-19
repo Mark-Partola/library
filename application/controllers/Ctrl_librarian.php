@@ -41,9 +41,9 @@ class Ctrl_librarian extends Ctrl_user{
 
 	public function acceptBook($id_exp) {
 
-		if(!isAjax()) {
+		/*if(!isAjax()) {
 			return false;
-		}
+		}*/
 
 		if(!$_SESSION['user']['auth']) {
 			return false;
@@ -51,10 +51,17 @@ class Ctrl_librarian extends Ctrl_user{
 
 		$this->model = new Model_librarian();
 
-		if(isset($_GET['forcibly'])) {
-			$forcibly = $_GET['forcibly'];
+		$forcibly = array();
+		if(isset($_GET['have'])) {
+			$forcibly['have'] = true;
 		} else {
-			$forcibly = false;
+			$forcibly['have'] = false;
+		}
+
+		if(isset($_GET['limit'])) {
+			$forcibly['limit'] = true;
+		} else {
+			$forcibly['limit'] = false;
 		}
 
 		$res = $this->model->acceptBook($id_exp, $_SESSION['user']['id'], $forcibly);
@@ -62,13 +69,11 @@ class Ctrl_librarian extends Ctrl_user{
 		$arr = array();
 
 		if($res === true){
-			$arr['msg'] = 'Успешно оформлено!!!';
+			$arr['msg'] = 'Успешно оформлено!';
 		} elseif($res === -1 ) {
 			$arr['msg'] = 'У этого пользователя уже есть такая книга!';
-			$arr['confirm'] = true;
 		} elseif($res === -2 ) {
-			$arr['msg'] = 'Неверное имя!';
-			$arr['confirm'] = true;
+			$arr['msg'] = 'Лимит исчерпан!';
 		} else {
 			$arr['msg'] ='Возникла ошибка!';
 		}

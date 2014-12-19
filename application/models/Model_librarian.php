@@ -47,7 +47,8 @@ class Model_librarian extends Model_user {
 
 	public function getExpBooks() {
 
-		$sql = "SELECT	`b`.`title`,
+		$sql = "SELECT	`b`.`id`,
+						`b`.`title`,
 						`b`.`image_preview`,
 						`b`.`author`,
 						`b`.`pub_year`,
@@ -72,35 +73,15 @@ class Model_librarian extends Model_user {
 
 	public function acceptBook($id_exp, $libr_id, $confirm = false) {
 
-		$sql = "SELECT `user_id`, `book_id` FROM `lib_expectations`
-					WHERE `id` = :id_exp";
-
 		try{
+			$sql = "SELECT `user_id`, `book_id` FROM `lib_expectations`
+						WHERE `id` = :id_exp";
+
 			$stmt = $this->db->prepare($sql);
 			$stmt->bindValue(':id_exp', $id_exp, PDO::PARAM_INT);
 			$stmt->execute();
 
 			$res = $stmt->fetch();
-
-			if($confirm) {
-				echo $confirm;
-				$names = explode(' ', $confirm);
-				$sql = "SELECT `fname`, `lname`
-							FROM `lib_users` 
-								WHERE `id` = :user_id";
-
-				$stmt = $this->db->prepare($sql);
-				$stmt->bindValue(':user_id', $res['user_id'], PDO::PARAM_INT);
-				$stmt->execute();
-
-				$result = $stmt->fetch();
-
-				if(!($result['fname'] === $names[0] && $result['lname'] === $names[1])) {
-					$confirm = true;
-					return -2;
-				}
-
-			}
 
 			$sql = "SELECT `id` 
 						FROM `lib_actions`
@@ -113,7 +94,33 @@ class Model_librarian extends Model_user {
 			$stmt->execute();
 
 			$row = $stmt->fetch();
-			if(!$confirm && !empty($row)) return -1;
+			if(!$confirm['have'] && !empty($row)) return -1;
+
+			/*ограничения по лимиту*/
+			if(!$confirm['limit']) {
+				$sql = "SELECT count(`id`) as `books`
+							FROM `lib_actions`
+								WHERE `user_id` = :user_id";
+
+				$stmt = $this->db->prepare($sql);
+				$stmt->bindValue(':user_id', $res['user_id'], PDO::PARAM_INT);
+				$stmt->execute();
+
+				$userBooks = $limit = $stmt->fetch()['books'];
+
+				$sql = "SELECT `limit` 
+							FROM `lib_users`
+								WHERE `id` = :user_id";
+
+				$stmt = $this->db->prepare($sql);
+				$stmt->bindValue(':user_id', $res['user_id'], PDO::PARAM_INT);
+				$stmt->execute();
+
+				$limit = $stmt->fetch()['limit'];
+
+				if($userBooks >= $limit) return -2;
+			}
+
 		}catch(Exception $e){
 			return false;
 		}
