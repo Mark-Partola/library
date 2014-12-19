@@ -21,4 +21,20 @@ class Ctrl_client extends Ctrl_base {
 
 	}
 
+	public function delBook($book_id){
+
+		if(!isAjax())	return false;
+
+		if(!isset($_SESSION['user'])) return false;
+
+		$this->model = new Model_user();
+
+		$result = $this->model->delBook($book_id, $_SESSION['user']['id']);
+
+		if($result === true) echo 'Успешно удалено!';
+		elseif($result === 0) echo 'Нет такого заказа!';
+		else echo 'Произошла ошибка!';
+
+	}
+
 }

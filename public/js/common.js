@@ -57,4 +57,27 @@ $(function(){
 
 	});
 
+	/*удаление заказа*/
+
+	$('.btn.del_from_exp').on('click', function(){
+		var id = $(this).data('book-id');
+
+		var path = (window.location.href);
+		var index = path.indexOf('/profile');
+		path = path.substr(0,index);
+
+		$.get(path+"/del/"+id, function(data){
+			var notice = $('#notice');
+			notice.fadeIn();
+			notice.text(data);
+
+			$('[data-book-id='+id+']').parent('.book').remove();
+
+			setTimeout(function(){
+				$('#notice').fadeOut();
+			}, 3000);
+		});
+
+	});
+
 });

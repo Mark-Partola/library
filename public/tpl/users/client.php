@@ -64,6 +64,7 @@
 						</div>
 					</div>
 				</a>
+				<button class="btn del_from_exp" data-book-id="<?=$book['id']?>">Убрать из ожидаемых</button>
 			</div>
 		<?endforeach?>
 		<div style="clear:both;"></div>

@@ -3,7 +3,7 @@
 <div id="content" class="mp">
 	<h1 class="header">Каталог книг</h1>
 	<div id="main_block">
-		<div id="mp_books">
+		<div class="mp_books">
 			<?foreach($books as $book): ?>
 				<div class="book">
 					<a href="<?=ROUTE_ROOT?>/book/<?=$book['id']?>" class="link_book">

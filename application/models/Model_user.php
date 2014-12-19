@@ -95,7 +95,8 @@ class Model_user extends Model_abstractDb {
 
 	public function getExpUserBooks($id) {
 
-		$sql = "SELECT	`b`.`title`,
+		$sql = "SELECT	`b`.`id`,
+						`b`.`title`,
 						`b`.`image_preview`,
 						`b`.`author`,
 						`b`.`pub_year`
@@ -148,6 +149,26 @@ class Model_user extends Model_abstractDb {
 		}
 
 		if($stmt->rowCount() === 1) return true;
+
+	}
+
+	public function delBook($book_id, $user_id) {
+
+		$sql = "DELETE FROM `lib_expectations`
+			WHERE `user_id` = :user
+				AND `book_id` = :book";
+
+		try{
+			$stmt = $this->db->prepare($sql);
+			$stmt->bindValue(':user', $user_id, PDO::PARAM_INT);
+			$stmt->bindValue(':book', $book_id, PDO::PARAM_INT);
+			$stmt->execute();
+		} catch(Exception $e) {
+			return false;
+		}
+
+		if($stmt->rowCount() === 1) return true;
+		else return 0;
 
 	}
 

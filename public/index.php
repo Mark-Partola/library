@@ -29,6 +29,10 @@ Request('GET', '/book/{id}','Ctrl_index:getBook')
 Request('GET', '/add/{id}','Ctrl_client:addBook')
 ->assert('id', '|^[0-9]+$|');
 
+//удаление книги
+Request('GET', '/del/{id}','Ctrl_client:delBook')
+->assert('id', '|^[0-9]+$|');
+
 
 Application::run();
 

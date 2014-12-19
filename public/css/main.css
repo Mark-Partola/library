@@ -196,7 +196,7 @@ li.lb{
 .mp_books .book{
 	padding: 20px 5px 10px;
 	background: #DEE5EB;
-	border: 5px solid #6E90B7;
+	/* border: 5px solid #6E90B7; */
 	box-shadow: 0px 0px 10px 2px #6E90B7;
 	word-wrap: break-word;
 }
