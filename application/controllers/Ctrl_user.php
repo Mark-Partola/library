@@ -46,13 +46,14 @@ class Ctrl_user extends Ctrl_base {
 		}
 
 		$books = $this->model->getUserBooks($id);
+		$expBooks = $this->model->getExpUserBooks($id);
 
 		//$profile = array_merge($user, $books);
 
 		$header = $this->generateTemplate('header', array('title' => 'Моя страница'));
 		$footer = $this->generateTemplate('footer');
 
-		$this->template = $this->generateTemplate('users/client', array('header' => $header, 'footer' => $footer, 'books' => $books, 'user' => $user));
+		$this->template = $this->generateTemplate('users/client', array('header' => $header, 'footer' => $footer, 'books' => $books, 'user' => $user, 'expBooks' => $expBooks));
 
 		echo $this->template;
 

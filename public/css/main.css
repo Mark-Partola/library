@@ -193,7 +193,7 @@ li.lb{
 	transition: all, 0.5s;
 }
 
-#mp_books .book{
+.mp_books .book{
 	padding: 20px 5px 10px;
 	background: #DEE5EB;
 	border: 5px solid #6E90B7;
@@ -316,4 +316,21 @@ li.lb{
 #top_scroll:hover{
 	transition: all 0.1s;
 	background-color: rgba(78, 112, 151, 0.6);
+}
+
+#notice{
+	display: none;
+	width: 400px;
+	background-color: rgba(78, 112, 151, 0.8);
+	border-radius: 5px;
+	position: fixed;
+	bottom: 10px;
+	left: 10px;
+
+	color: #fff;
+	font-size: 1.2em;
+	padding: 20px;
+
+	box-sizing: border-box;
+	text-align: center;
 }

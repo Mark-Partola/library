@@ -93,6 +93,29 @@ class Model_user extends Model_abstractDb {
 
 	}
 
+	public function getExpUserBooks($id) {
+
+		$sql = "SELECT	`b`.`title`,
+						`b`.`image_preview`,
+						`b`.`author`,
+						`b`.`pub_year`
+					FROM `lib_expectations` as `e`
+					INNER JOIN `lib_books` as `b`
+						ON `e`.`book_id` =  `b`.`id`
+					WHERE `e`.`user_id` = $id";
+
+		try{
+			$stmt = $this->db->prepare($sql);
+			$stmt->bindValue(':id', $id, PDO::PARAM_INT);
+			$stmt->execute();
+
+			return $stmt->fetchAll();
+		} catch(Exception $e) {
+			return false;
+		}
+
+	}
+
 	public function addBook($book_id, $user_id) {
 
 		$sql = "SELECT count(id) as `count`

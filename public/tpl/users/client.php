@@ -24,18 +24,20 @@
 		<div style="clear:both;"></div>
 	</div>
 
-	<h1 class="header">Книги на руках:</h1>
-	<div id="mp_books">
+	<h1 class="header">Книги на руках</h1>
+	<div class="mp_books">
 		<?foreach($books as $book): ?>
 			<div class="book">
-				<h1 class="book_title"><a href="<?=ROUTE_ROOT?>/book/<?=$book['id']?>"><?=$book['title']?></a></h1>
-				<div class="book_info">
-					<img src="<?=ROUTE_ROOT.$book['image_preview']?>" alt="<?=$book['title']?>" width="120px">
-					<div>
-						<p><?=$book['author']?></p>
-						<p><?=$book['pub_year']?></p>
+				<a href="<?=ROUTE_ROOT?>/book/<?=$book['id']?>" class="link_book">
+					<h1 class="book_title"><?=$book['title']?></h1>
+					<div class="book_info">
+						<img src="<?=ROUTE_ROOT.$book['image_preview']?>" alt="<?=$book['title']?>" width="120px">
+						<div>
+							<p><?=$book['author']?></p>
+							<p><?=$book['pub_year']?></p>
+						</div>
 					</div>
-				</div>
+				</a>
 				<div class="limit_date">
 					<?if(!empty($book['exp'])): ?>
 						<h3>Дата окончания: <? $date = date_parse($book['exp']); echo "{$date['year']}-{$date['month']}-{$date['day']} ";?></h3>
@@ -43,6 +45,25 @@
 						<h3>Безлимит</h3>
 					<?endif?>
 				</div>
+			</div>
+		<?endforeach?>
+		<div style="clear:both;"></div>
+	</div>
+
+	<h1 class="header">Ожидают оформления</h1>
+	<div class="mp_books">
+		<?foreach($expBooks as $book): ?>
+			<div class="book">
+				<a href="<?=ROUTE_ROOT?>/book/<?=$book['id']?>" class="link_book">
+					<h1 class="book_title"><?=$book['title']?></h1>
+					<div class="book_info">
+						<img src="<?=ROUTE_ROOT.$book['image_preview']?>" alt="<?=$book['title']?>" width="120px">
+						<div>
+							<p><?=$book['author']?></p>
+							<p><?=$book['pub_year']?></p>
+						</div>
+					</div>
+				</a>
 			</div>
 		<?endforeach?>
 		<div style="clear:both;"></div>

@@ -12,6 +12,7 @@
 	<div class="copy">Марк Партола</div>
 </div>
 <div id="top_scroll"></div>
+<div id="notice"></div>
 
 </body>
 </html>

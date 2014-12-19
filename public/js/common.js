@@ -46,7 +46,13 @@ $(function(){
 		var id = $(this).data('book-id');
 
 		$.get(window.location.href+"/add/"+id, function(data){
-			alert(data);
+			var notice = $('#notice');
+			notice.fadeIn();
+			notice.text(data);
+
+			setTimeout(function(){
+				$('#notice').fadeOut();
+			}, 3000);
 		});
 
 	});
