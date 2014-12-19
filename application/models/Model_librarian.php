@@ -45,9 +45,15 @@ class Model_librarian extends Model_user {
 
 	}
 
-	public function getExpBooks(){
+	public function getExpBooks() {
 
-		$sql = "SELECT *
+		$sql = "SELECT	`b`.`title`,
+						`b`.`image_preview`,
+						`b`.`author`,
+						`b`.`pub_year`,
+						`u`.`fname`,
+						`u`.`lname`,
+						`e`.`id` as `exp_id`
 					FROM `lib_expectations` as `e`
 						INNER JOIN `lib_users` as `u`
 							ON `e`.`user_id` = `u`.`id`
@@ -59,6 +65,89 @@ class Model_librarian extends Model_user {
 
 			return $res->fetchAll();
 		}catch(Exception $e){
+			return false;
+		}
+
+	}
+
+	public function acceptBook($id_exp, $libr_id, $confirm = false) {
+
+		$sql = "SELECT `user_id`, `book_id` FROM `lib_expectations`
+					WHERE `id` = :id_exp";
+
+		try{
+			$stmt = $this->db->prepare($sql);
+			$stmt->bindValue(':id_exp', $id_exp, PDO::PARAM_INT);
+			$stmt->execute();
+
+			$res = $stmt->fetch();
+
+			if($confirm) {
+				echo $confirm;
+				$names = explode(' ', $confirm);
+				$sql = "SELECT `fname`, `lname`
+							FROM `lib_users` 
+								WHERE `id` = :user_id";
+
+				$stmt = $this->db->prepare($sql);
+				$stmt->bindValue(':user_id', $res['user_id'], PDO::PARAM_INT);
+				$stmt->execute();
+
+				$result = $stmt->fetch();
+
+				if(!($result['fname'] === $names[0] && $result['lname'] === $names[1])) {
+					$confirm = true;
+					return -2;
+				}
+
+			}
+
+			$sql = "SELECT `id` 
+						FROM `lib_actions`
+							WHERE `user_id` = :user_id
+								AND `book_id` = :book_id";
+
+			$stmt = $this->db->prepare($sql);
+			$stmt->bindValue(':book_id', $res['book_id'], PDO::PARAM_INT);
+			$stmt->bindValue(':user_id', $res['user_id'], PDO::PARAM_INT);
+			$stmt->execute();
+
+			$row = $stmt->fetch();
+			if(!$confirm && !empty($row)) return -1;
+		}catch(Exception $e){
+			return false;
+		}
+
+		try{
+
+			$this->db->beginTransaction();
+
+			$sql = "INSERT INTO `lib_actions` (`book_id`, `user_id`, `libr_id`)
+						VALUES(:book_id, :user_id, :libr_id)";
+
+			$stmt = $this->db->prepare($sql);
+			$stmt->bindValue(':book_id', $res['book_id'], PDO::PARAM_INT);
+			$stmt->bindValue(':user_id', $res['user_id'], PDO::PARAM_INT);
+			$stmt->bindValue(':libr_id', $libr_id, PDO::PARAM_INT);
+			$stmt->execute();
+
+			if($stmt->rowCount() !== 1) throw new Exception("Error");
+
+			$sql = "DELETE FROM `lib_expectations`
+						WHERE `id` = :id_exp";
+
+			$stmt = $this->db->prepare($sql);
+			$stmt->bindValue(':id_exp', $id_exp, PDO::PARAM_INT);
+			$stmt->execute();
+
+			if($stmt->rowCount() !== 1) throw new Exception("Error");
+
+			$this->db->commit();
+
+			return true;
+
+		} catch(Exception $e) {
+			$this->db->rollBack();
 			return false;
 		}
 

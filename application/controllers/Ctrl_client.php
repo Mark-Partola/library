@@ -9,7 +9,10 @@ class Ctrl_client extends Ctrl_base {
 
 		if(!isAjax())	return false;
 
-		if(!isset($_SESSION['user'])) return false;
+		if(!isset($_SESSION['user']['auth'])) {
+			echo 'Для этого действия нужно авторизоваться!';
+			return true;
+		}
 
 		$this->model = new Model_user();
 

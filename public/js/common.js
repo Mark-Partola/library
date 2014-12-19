@@ -47,7 +47,9 @@ $(function(){
 
 		var path = (window.location.href);
 		var index = path.indexOf('/book');
-		path = path.substr(0,index);
+		if(index != -1) {
+			path = path.substr(0,index);
+		}
 
 		$.get(path+"/add/"+id, function(data){
 			var notice = $('#notice');
@@ -79,6 +81,41 @@ $(function(){
 
 			var len = document.querySelectorAll('.book .del_from_exp').length;
 			if(len == 0) $('.header_exp').remove();
+
+			setTimeout(function(){
+				$('#notice').fadeOut();
+			}, 3000);
+		});
+
+	});
+
+	//подтверждение заказа
+
+	$('.btn.libr_add_book_exp').on('click', function(){
+
+		if(!window.confirm('Уверены?')) return false;
+
+		var id = $(this).data('book-id');
+
+		var path = (window.location.href);
+		var index = path.indexOf('/profile');
+		path = path.substr(0,index);
+
+		var confirm;
+
+		$.getJSON(path+"/accept/"+id, function(data){
+			var notice = $('#notice');
+
+			if(data['confirm']) {
+				confirm = prompt(data['msg']+'\nВы действительно хотите добавить? \nВведите имя пользователя для подтверждения:');
+			}
+
+			$.getJSON(path+"/accept/"+id+"?forcibly="+confirm);
+
+			if(!confirm) {
+				notice.fadeIn();
+				notice.text(data['msg']);
+			}
 
 			setTimeout(function(){
 				$('#notice').fadeOut();

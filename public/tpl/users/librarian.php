@@ -62,10 +62,10 @@
 							<p><?=$book['author']?></p>
 							<p><?=$book['pub_year']?></p>
 						</div>
-						<p class="where_book">Ожидает <? echo "{$book['fname']} {$book['patronymic']} {$book['lname']}";?></p>
+						<p class="where_book">Ожидает <? echo "{$book['fname']} {$book['lname']}";?></p>
 					</div>
 				</a>
-				<button class="btn">Подтвердить</button>
+				<button class="btn libr_add_book_exp" data-book-id="<?=$book['exp_id']?>">Подтвердить</button>
 			</div>
 		<?endforeach?>
 		<div style="clear:both;"></div>

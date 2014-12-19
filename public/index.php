@@ -25,6 +25,9 @@ Request('GET', '/profile/{id}','Ctrl_librarian:getProfile')
 Request('GET', '/book/{id}','Ctrl_index:getBook')
 ->assert('id', '|^[0-9]+$|');
 
+//подтверждение добавления
+Request('GET', '/accept/{id}','Ctrl_librarian:acceptBook')
+->assert('id', '|^[0-9]+$|')->isRole(1);
 //добавление книги
 Request('GET', '/add/{id}','Ctrl_client:addBook')
 ->assert('id', '|^[0-9]+$|');
