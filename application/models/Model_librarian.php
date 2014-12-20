@@ -160,4 +160,23 @@ class Model_librarian extends Model_user {
 
 	}
 
+
+	public function delBook($book_id) {
+
+		$sql = "DELETE FROM `lib_expectations`
+					WHERE `book_id` = :book";
+
+		try{
+			$stmt = $this->db->prepare($sql);
+			$stmt->bindValue(':book', $book_id, PDO::PARAM_INT);
+			$stmt->execute();
+		} catch(Exception $e) {
+			return false;
+		}
+
+		if($stmt->rowCount() === 1) return true;
+		else return 0;
+
+	}
+
 }

@@ -125,4 +125,18 @@ $(function(){
 
 	});
 
+	/*Табы*/
+
+	$('.tabs').on('click', function(){
+		var anc = ($(this).attr('href'));
+		window.location.hash.replace("#","");
+		console.log(anc);
+
+		if(anc === 'addUser') {
+			$('#addUser').fadeIn();
+		}
+
+		return false;
+	});
+
 });

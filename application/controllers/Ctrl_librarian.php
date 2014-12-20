@@ -81,4 +81,20 @@ class Ctrl_librarian extends Ctrl_user{
 		echo json_encode($arr);
 	}
 
+	public function delBook($book_id){
+
+		if(!isAjax())	return false;
+
+		if(!isset($_SESSION['user']['auth'])) return false;
+
+		$this->model = new Model_librarian();
+
+		$result = $this->model->delBook($book_id);
+
+		if($result === true) echo 'Успешно удалено!';
+		elseif($result === 0) echo 'Нет такого заказа!';
+		else echo 'Произошла ошибка!';
+
+	}
+
 }

@@ -6,21 +6,32 @@
 	</div>
 
 	<div id="user_info">
-		<div id="profile_info">
+		<div class="profile_info">
 			<?if(!empty($user['photo'])): ?>
 				<img width="300" src="<?=ROUTE_ROOT?>/images/users/avatars/<?=$user['photo']?>" alt="">
 			<?else:?>
 				<img width="300" src="<?=ROUTE_ROOT?>/images/users/avatars/default.gif" alt="">
 			<?endif?>
 		</div>
-		<div>
+		<div class="profile_info">
 			<div id="user_name"><? echo "{$user['fname']} {$user['patronymic']} {$user['lname']}";?></div>
 			<div style="margin-left: 20px;">
 				Телефон: <span><?=$user['phone']?></span><br><br>
 				Почта: <span><?=$user['email']?></span>
 			</div>
 		</div>
+		<div class="profile_info">
+			<div class="actions_libr">
+				<h3 class="header_small"><a class="tabs" href="addUser">Создать нового пользователя</a></h3><br>
+				<h3 class="header_small"><a class="tabs" href="addBook">Добавить новую книгу</a></h3><br>
+				<h3 class="header_small"><a class="tabs" href="banUser">Заблокировать пользователя</a></h3>
+			</div>
+		</div>
 		<div style="clear:both;"></div>
+	</div>
+
+	<div id="addUser">
+		123123123
 	</div>
 
 	<h1 class="header">Выданные книги</h1>
@@ -51,7 +62,7 @@
 	</div>
 
 	<h1 class="header">Ожидающие выдачи</h1>
-	<div class="mp_books">
+	<div class="mp_books mp_books_big">
 		<?foreach($expBooks as $book): ?>
 			<div class="book">
 				<a href="<?=ROUTE_ROOT?>/book/<?=$book['id']?>" class="link_book">
@@ -67,7 +78,10 @@
 				</a>
 				<label>Имеется <input type="checkbox" name="have"></label>
 				<label>Лимит <input type="checkbox" name="limit"></label>
-				<button class="btn libr_add_book_exp" data-book-id="<?=$book['exp_id']?>">Подтвердить</button>
+				<div class="buttons_book">
+					<div><button class="btn libr_add_book_exp" data-book-id="<?=$book['exp_id']?>">Подтвердить</button></div>
+					<div><button class="btn del_from_exp" data-book-id="<?=$book['id']?>">Отклонить</button></div>
+				</div>
 			</div>
 		<?endforeach?>
 		<div style="clear:both;"></div>

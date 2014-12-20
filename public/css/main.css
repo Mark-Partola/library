@@ -28,6 +28,15 @@ body{
 	transition: all 0.2s;
 }
 
+.buttons_book{
+	margin: 20px;
+}
+
+
+.buttons_book div{
+	margin-bottom:10px; 
+}
+
 .fixed {
 	position: fixed;
 }
@@ -91,6 +100,15 @@ body{
 	color: #4E7097;
 	font-size: 2em;
 	margin: 20px;
+}
+
+.header_small a{
+	color: #4E7097;
+	text-decoration: none;
+}
+
+.header_small a:hover{
+	text-decoration: underline;
 }
 
 .header_small{
@@ -168,14 +186,19 @@ li.lb{
 	border-bottom: 1px solid #DEE5EB;
 }
 
-#profile_info{
+.profile_info{
 	float: left;
-	margin-right: 20px;
+	width: 300px;
+	padding-left: 20px;
+}
+
+.actions_libr{
+	padding: 20px;
 }
 
 #user_name{
 	font-size: 2em;
-	margin: 20px 20px 20px 320px;
+	margin: 20px 20px 20px 20px;
 	border-bottom: 1px solid #DEE5EB;
 	color: #4E7097;
 }
@@ -199,6 +222,10 @@ li.lb{
 	/* border: 5px solid #6E90B7; */
 	box-shadow: 0px 0px 10px 2px #6E90B7;
 	word-wrap: break-word;
+}
+
+.mp_books.mp_books_big .book  {
+	height: 500px !important;
 }
 
 .book_title{
@@ -377,3 +404,6 @@ li.lb{
 .detail_info .info{
 	margin-bottom: 10px;
 }
+
+
+/*действия библиотекаря*/

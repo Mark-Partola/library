@@ -33,6 +33,8 @@ Request('GET', '/add/{id}','Ctrl_client:addBook')
 ->assert('id', '|^[0-9]+$|');
 
 //удаление книги
+Request('GET', '/del/{id}','Ctrl_librarian:delBook')
+->assert('id', '|^[0-9]+$|')->isRole(1);
 Request('GET', '/del/{id}','Ctrl_client:delBook')
 ->assert('id', '|^[0-9]+$|');
 
