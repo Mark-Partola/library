@@ -117,13 +117,17 @@ class Ctrl_librarian extends Ctrl_user{
 
 			} else {
 
-				$this->model->createUser(
+				$res = $this->model->createUser(
 					$userData->fname,
 					$userData->lname,
 					$userData->passport,
 					$userData->email,
+					$userData->patr,
 					$userData->limit
 				);
+
+				if($res === true) echo 'Пользователь создан';
+				else  echo 'Произошла ошибка';
 
 			}
 

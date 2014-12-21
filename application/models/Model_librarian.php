@@ -179,9 +179,62 @@ class Model_librarian extends Model_user {
 
 	}
 
-	public function createUser($fname, $lname, $passport, $email, $limit=null, $role=0, $phone=null) {
+	public function createUser($fname, $lname, $passport, $email, $patr, $limit=null, $role=0, $phone=null) {
 
-		
+		$sql = "";
+
+		$sql = "INSERT INTO 
+			`lib_users` (
+						`login`,
+						`password`,
+						`fname`,
+						`lname`,
+						`passport`,
+						`patronymic`,
+						`email`,
+						`phone`,
+						`role`
+					)
+			VALUES	(
+						:login,
+						:password,
+						:fname,
+						:lname,
+						:passport,
+						:patronymic,
+						:email,
+						:phone,
+						:role
+					)";
+
+		$password = uniqid();
+		$hashPassword = md5(uniqid());
+		$login = substr($hashPassword,1,5);
+
+		try{
+
+			$stmt = $this->db->prepare($sql);
+
+			$stmt->bindValue(':login', 		$login,								PDO::PARAM_STR);
+			$stmt->bindValue(':password', 	$hashPassword,						PDO::PARAM_STR);
+			$stmt->bindValue(':fname', 		$fname,								PDO::PARAM_STR);
+			$stmt->bindValue(':lname', 		$lname,								PDO::PARAM_STR);
+			$stmt->bindValue(':passport',	$passport,							PDO::PARAM_STR);
+			$stmt->bindValue(':patronymic',	empty($patr) ? null : $patr,		PDO::PARAM_STR);
+			$stmt->bindValue(':email', 		$email,								PDO::PARAM_STR);
+			$stmt->bindValue(':phone', 		empty($phone) ? null : $phone,		PDO::PARAM_STR);
+			$stmt->bindValue(':role', 		$role,								PDO::PARAM_INT);
+
+			$stmt->execute();
+
+			if($stmt->rowCount() === 1) return true;
+			else return false;
+
+		} catch(Exception $e) {
+
+			return false;
+
+		}
 
 	}
 
