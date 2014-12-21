@@ -41,9 +41,9 @@ class Ctrl_librarian extends Ctrl_user{
 
 	public function acceptBook($id_exp) {
 
-		/*if(!isAjax()) {
+		if(!isAjax()) {
 			return false;
-		}*/
+		}
 
 		if(!$_SESSION['user']['auth']) {
 			return false;
@@ -94,6 +94,46 @@ class Ctrl_librarian extends Ctrl_user{
 		if($result === true) echo 'Успешно удалено!';
 		elseif($result === 0) echo 'Нет такого заказа!';
 		else echo 'Произошла ошибка!';
+
+	}
+
+	public function createUser() {
+
+		if(!isAjax())	return false;
+		if(!isset($_SESSION['user']['auth'])) return false;
+
+		$userData = json_decode($_POST['jsonData']);
+
+		$this->model = new Model_librarian();
+
+		if( !empty($userData->fname) &&
+			!empty($userData->lname) &&
+			!empty($userData->passport) &&
+			!empty($userData->email) ) {
+
+			if( !filter_var($userData->email, FILTER_VALIDATE_EMAIL) ) {
+
+				echo 'Не похоже на адрес почты!';
+
+			} else {
+
+				$this->model->createUser(
+					$userData->fname,
+					$userData->lname,
+					$userData->passport,
+					$userData->email,
+					$userData->limit
+				);
+
+			}
+
+		} else {
+
+			echo 'Заполните все поля!';
+
+		}
+
+
 
 	}
 

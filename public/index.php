@@ -39,6 +39,9 @@ Request('GET', '/del/{id}','Ctrl_client:delBook')
 ->assert('id', '|^[0-9]+$|');
 
 
+//создание пользователя
+Request('POST', '/create/user','Ctrl_librarian:createUser')->isRole(1);
+
 Application::run();
 
 

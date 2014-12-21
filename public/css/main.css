@@ -102,12 +102,12 @@ body{
 	margin: 20px;
 }
 
-.header_small a{
+.header_small a, .header a{
 	color: #4E7097;
 	text-decoration: none;
 }
 
-.header_small a:hover{
+.header_small a:hover, .header a:hover{
 	text-decoration: underline;
 }
 
@@ -407,3 +407,39 @@ li.lb{
 
 
 /*действия библиотекаря*/
+
+#addUser {
+	/*display: none;*/
+}
+
+.form{
+	padding-left: 50px;
+	padding-top: 30px;
+}
+.form label{
+	display: block;
+	margin-bottom: 10px;
+}
+
+.form label span{
+	display: inline-block;
+	width: 150px;
+	text-align: right;
+	color: #2E5067;
+}
+
+.form input {
+	margin-left: 30px;
+	padding: 5px 5px 5px 3px;
+	outline:none;
+	border: 1px solid  #6E90B7;
+	border-radius: 5px;
+}
+
+.form input:focus{
+	box-shadow: 0px 0px 5px 0px #6E90B7;
+}
+
+.form .buttons_book{
+	margin-left: 200px;
+}

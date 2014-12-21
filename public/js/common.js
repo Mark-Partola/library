@@ -133,10 +133,55 @@ $(function(){
 		console.log(anc);
 
 		if(anc === 'addUser') {
-			$('#addUser').fadeIn();
+			$('#addUser').slideToggle();
 		}
 
 		return false;
+	});
+
+	/*создание пользователя*/
+
+	$('.btn.create_user').on('click', function(){
+
+		var filled = 0;
+		var inputs = 0;
+		var formData = {};
+
+		$('#addUser').find('input').each(function(){
+			inputs += 1;
+			if($(this).attr('data-require') == 1 && !$(this).val()) {
+				$(this).next('span').css('display', 'inline');
+			} else {
+				$(this).next('span').css('display', 'none');
+				formData[$(this).attr('name')] = $(this).val();
+				filled += 1;
+			}
+		});
+
+		if(filled === inputs) {
+			var path = (window.location.href);
+			var index = path.indexOf('/profile');
+			path = path.substr(0,index);
+
+			$.ajax({
+				url:  path+'/create/user'
+				,type:'POST'
+				,data:'jsonData=' + JSON.stringify(formData)
+				,success: function(data) {
+					var notice = $('#notice');
+					notice.fadeIn();
+					notice.text(data);
+
+					setTimeout(function(){
+						$('#notice').fadeOut();
+					}, 10000);
+				}
+			});
+
+		}
+
+		return false;
+
 	});
 
 });

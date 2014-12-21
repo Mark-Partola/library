@@ -179,4 +179,10 @@ class Model_librarian extends Model_user {
 
 	}
 
+	public function createUser($fname, $lname, $passport, $email, $limit=null, $role=0, $phone=null) {
+
+		
+
+	}
+
 }

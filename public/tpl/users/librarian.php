@@ -31,7 +31,16 @@
 	</div>
 
 	<div id="addUser">
-		123123123
+		<h3 class="header"><a class="tabs" href="addUser">Создание нового пользователя</a></h3>
+		<div class="form">
+			<label><span>Имя * :</span> <input type="text" name="fname" placeholder="Имя" data-require="1"><span style="color:#B7303E; display:none; margin-left: 20px;">Обязательно!</span></label>
+			<label><span>Фамилия * :</span> <input type="text" name="lname" placeholder="Фамилия" data-require="1"><span style="color:#B7303E; display:none; margin-left: 20px;">Обязательно!</span></label>
+			<label><span>Отчество :</span> <input type="text" name="patr" placeholder="Отчество"></label>
+			<label><span>Паспорт * :</span> <input type="text" name="passport" placeholder="Номер паспорта" data-require="1"><span style="color:#B7303E; display:none; margin-left: 20px;">Обязательно!</span></label>
+			<label><span>E-mail * :</span> <input type="text" name="email" placeholder="Адрес электронной почты" data-require="1"><span style="color:#B7303E; display:none; margin-left: 20px;">Обязательно!</span></label>
+			<label><span>Лимит :</span> <input type="text" name="limit" placeholder="Лимит книг"></label>
+			<div class="buttons_book"><button class="btn create_user">Создать</button></div>
+		</div>
 	</div>
 
 	<h1 class="header">Выданные книги</h1>
