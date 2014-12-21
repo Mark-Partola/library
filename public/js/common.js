@@ -102,7 +102,7 @@ $(function(){
 		path = path.substr(0,index);
 
 		var attrs = {};
-		var ins = $(this).parent('.book').find('input:checked').each(function(){
+		$(this).parents('.book').find('input:checked').each(function(){
 			attrs[$(this).attr('name')] = true;
 		});
 
