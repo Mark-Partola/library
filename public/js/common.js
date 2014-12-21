@@ -133,7 +133,7 @@ $(function(){
 		console.log(anc);
 
 		if(anc === 'addUser') {
-			$('#addUser').slideToggle();
+			$('#addUser > div').slideToggle();
 		}
 
 		return false;

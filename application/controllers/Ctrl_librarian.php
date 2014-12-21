@@ -127,6 +127,7 @@ class Ctrl_librarian extends Ctrl_user{
 				);
 
 				if($res === true) echo 'Пользователь создан';
+				elseif($res === 0) echo 'Пользователь с такой почтой или паспортом уже зарегистрирован!';
 				else  echo 'Произошла ошибка';
 
 			}

@@ -181,7 +181,19 @@ class Model_librarian extends Model_user {
 
 	public function createUser($fname, $lname, $passport, $email, $patr, $limit=null, $role=0, $phone=null) {
 
-		$sql = "";
+		$sql = "SELECT `id` 
+					FROM `lib_users`
+						WHERE `email` = :email
+							OR `passport` = :passport";
+
+		$stmt = $this->db->prepare($sql);
+
+		$stmt->bindValue(':email',		$email,		PDO::PARAM_STR);
+		$stmt->bindValue(':passport',	$passport,	PDO::PARAM_STR);
+
+		$stmt->execute();
+
+		if(!empty($stmt->fetch())) return 0;
 
 		$sql = "INSERT INTO 
 			`lib_users` (

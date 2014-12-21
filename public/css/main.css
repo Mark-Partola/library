@@ -408,8 +408,8 @@ li.lb{
 
 /*действия библиотекаря*/
 
-#addUser {
-	/*display: none;*/
+#addUser > div {
+	display: none;
 }
 
 .form{
